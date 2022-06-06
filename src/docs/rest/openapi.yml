@@ -1,0 +1,29 @@
+openapi: "3.0.0"
+info:
+  version: 0.0.1
+  title: 'Holdim'
+tags:
+  - name: User
+security:
+  - bearerAuth: []
+paths:
+  '/v1/user/register':
+    post:
+      summary: 'User register request'
+      operationId: 'userRegister'
+      description: 'Register user'
+      tags:
+        - User
+      responses:
+        '200':
+          description: 'Success'
+        '400':
+          description: 'Bad request'
+        '401':
+          description: 'Unauthorized'
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
