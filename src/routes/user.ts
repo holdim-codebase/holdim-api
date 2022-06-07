@@ -2,8 +2,8 @@ import express, { Application } from 'express'
 
 const router = express.Router({ mergeParams: true })
 
-// eslint-disable-next-line @typescript-eslint/no-misused-promises
-router.get('/user/register', async (req, res, next) => {
+router.post('/user/register', async (req, res, next) => {
+  res.sendStatus(200)
 })
 
 export const bindRoutes = (app: Application, prefix: string) => {
