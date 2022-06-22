@@ -7,18 +7,21 @@
   "license": "MIT",
   "private": true,
   "scripts": {
-    "build:docs": "js-yaml ./src/docs/rest/openapi.yml > ./src/docs/rest/openapi.json && js-yaml ./src/docs/websocket/asyncapi.yml > ./src/docs/websocket/asyncapi.json",
+    "build:docs": "js-yaml ./src/docs/rest/openapi.yml > ./src/docs/rest/openapi.json",
     "build": "npm run build:docs && tsc",
-    "start": "node ./dist",
+    "start": "node ./dist/index.js",
     "lint": "eslint '**/*.ts' -f codeframe"
   },
   "dependencies": {
+    "@prisma/client": "^3.15.1",
     "@walletconnect/client": "^1.7.8",
     "@walletconnect/qrcode-modal": "^1.7.7",
     "ajv": "8.11.0",
     "express": "^4.17.3",
+    "firebase-admin": "^11.0.0",
     "pino": "7.1.0",
     "pino-http": "7.1.0",
+    "prisma": "^3.15.1",
     "socket.io": "^4.4.1",
     "web3": "^1.7.3"
   },

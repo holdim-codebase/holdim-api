@@ -4,6 +4,7 @@ info:
   title: 'Holdim'
 tags:
   - name: User
+  - name: Proposals
 security:
   - bearerAuth: []
 paths:
@@ -14,11 +15,75 @@ paths:
       description: 'Register user'
       tags:
         - User
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                publicId:
+                  type: string
       responses:
         '200':
           description: 'Success'
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: string
+                  publicId:
+                    type: string
         '400':
           description: 'Bad request'
+        '401':
+          description: 'Unauthorized'
+  '/v1/proposals':
+    get:
+      summary: 'List proposals'
+      operationId: listProposals
+      description: 'Return list of proposals that user is following'
+      tags:
+        - Proposals
+      responses:
+        '200':
+          description: 'Success'
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  dao:
+                    type: object
+                    properties:
+                      id:
+                        type: integer
+                      name:
+                        type: string
+                      logo:
+                        type: string
+                        description: 'url'
+                  juniorDescription:
+                    type: string
+                  endAt:
+                    type: integer
+                    description: 'UNIX Timestamp (in ms)'
+                  poll:
+                    type: object
+                    properties:
+                      choices:
+                        type: array
+                        items:
+                          type: object
+                          properties:
+                            name:
+                              type: string
+                            score:
+                              type: number
+                            symbol:
+                              type: string
         '401':
           description: 'Unauthorized'
 components:
