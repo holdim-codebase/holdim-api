@@ -1,0 +1,24 @@
+type PollChoice {
+  name: String!
+  score: Int!
+  symbol: String!
+}
+
+type ProposalPoll {
+  choices: [PollChoice!]!
+}
+
+type Proposal {
+  id: ID!
+  title: String!
+  dao: DAO!
+  middleDescription: String!
+  seniorDescription: String!
+  # UNIX Timestamp (in ms)
+  startAt: Int!
+  # UNIX Timestamp (in ms)
+  endAt: Int!
+  author: String!
+  totalVoters: Int!
+  poll: ProposalPoll!
+}

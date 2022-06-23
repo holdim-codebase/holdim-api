@@ -1,0 +1,5 @@
+type DAO {
+  id: ID!
+  name: String!
+  logo: String
+}

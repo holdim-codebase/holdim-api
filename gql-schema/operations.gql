@@ -1,0 +1,7 @@
+type Query {
+  proposals: [Proposal!]!
+}
+
+type Mutation {
+  registerUser(publicId: ID!): User!
+}
