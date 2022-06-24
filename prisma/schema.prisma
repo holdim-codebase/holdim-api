@@ -1,0 +1,43 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id       String    @id @db.VarChar(255)
+  publicId String @db.VarChar(255) @unique
+
+  createdAt DateTime @default(now())
+}
+
+model DAO {
+  id        Int      @id @default(autoincrement())
+  name      String
+  logo      String
+
+  createdAt DateTime @default(now())
+}
+
+model Proposal {
+  id        Int      @id @default(autoincrement())
+  title      String
+  dao      DAO @relation(fields: [daoId], references: [id])
+  daoId Int
+  juniorDescription String?
+  middleDescription String?
+  seniorDescription String
+  startAt DateTime
+  endAt DateTime
+  author String
+  totalVoters Int
+  poll
+
+  createdAt DateTime @default(now())
+}

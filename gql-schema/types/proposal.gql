@@ -1,17 +1,8 @@
-type PollChoice {
-  name: String!
-  score: Int!
-  symbol: String!
-}
-
-type ProposalPoll {
-  choices: [PollChoice!]!
-}
-
 type Proposal {
   id: ID!
   title: String!
   dao: DAO!
+  juniorDescription: String!
   middleDescription: String!
   seniorDescription: String!
   # UNIX Timestamp (in ms)
@@ -20,5 +11,4 @@ type Proposal {
   endAt: Int!
   author: String!
   totalVoters: Int!
-  poll: ProposalPoll!
 }
