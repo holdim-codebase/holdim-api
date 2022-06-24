@@ -12,7 +12,7 @@ datasource db {
 
 model User {
   id       String @id @db.VarChar(255)
-  publicId String @unique @db.VarChar(255)
+  publicId String @db.VarChar(255)
 
   createdAt DateTime @default(now())
 }
