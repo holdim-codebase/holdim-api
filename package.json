@@ -10,7 +10,7 @@
     "schema": "prisma/schema.prisma"
   },
   "scripts": {
-    "build": "npm run build:gql && tsc",
+    "build": "npx prisma generate && npm run build:gql && tsc",
     "start": "node ./dist/index.js",
     "lint": "eslint '**/*.ts' -f codeframe",
     "build:gql": "graphql-codegen --config codegen.yml",
