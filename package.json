@@ -14,7 +14,8 @@
     "start": "node ./dist/index.js",
     "lint": "eslint '**/*.ts' -f codeframe",
     "build:gql": "graphql-codegen --config codegen.yml",
-    "script:getAuthTokeByUID": "ts-node ./scripts/getAuthTokenByUID"
+    "script:getAuthTokeByUID": "ts-node ./scripts/getAuthTokenByUID",
+    "start:dev": "yarn run build && GOOGLE_APPLICATION_CREDENTIALS=`pwd`/local_secrets/fb_service_key.json yarn run start"
   },
   "dependencies": {
     "@graphql-codegen/cli": "^2.6.2",

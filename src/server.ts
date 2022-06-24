@@ -15,6 +15,7 @@ export const server = new ApolloServer({
     try {
       user = await getFirebaseUser((req.headers.authorization ?? '').split('Bearer ')[1])
     } catch (error) {
+      logger.debug({ error }, 'Auth failed')
       throw new AuthenticationError('Failed to authenticate')
     }
 
