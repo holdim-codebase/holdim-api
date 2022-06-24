@@ -58,3 +58,6 @@ src/generated/**/*
 # Generated JSON docs
 src/docs/rest/openapi.json
 src/docs/websocket/asyncapi.json
+
+# Local dir
+local_secrets/**/*
