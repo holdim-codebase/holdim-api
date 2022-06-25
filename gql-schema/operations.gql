@@ -3,5 +3,5 @@ type Query {
 }
 
 type Mutation {
-  registerUser(publicId: ID!): User!
+  registerUser(walletAddress: ID!): User!
 }

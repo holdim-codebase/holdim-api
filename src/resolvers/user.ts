@@ -3,7 +3,7 @@ import { repositories } from '../repositories'
 
 export const userResoler: Resolvers['User'] = {
   id: ({ id }) => id,
-  publicId: ({ publicId }) => publicId,
+  walletAddress: ({ walletAddress }) => walletAddress,
 }
 
 export const userQueryResolvers: Resolvers['Query'] = {}
@@ -11,10 +11,10 @@ export const userQueryResolvers: Resolvers['Query'] = {}
 export const userMutationResolvers: Resolvers['Mutation'] = {
   registerUser: (parent, args, context, info) => {
     const user = repositories.user.upsert({
-      select: { id: true, publicId: true, createdAt: true },
+      select: { id: true, walletAddress: true, createdAt: true },
       where: { id: context.user.uid },
-      create: { id: context.user.uid, publicId: args.publicId },
-      update: { publicId: args.publicId },
+      create: { id: context.user.uid, walletAddress: args.walletAddress },
+      update: { walletAddress: args.walletAddress },
     })
 
     return user
