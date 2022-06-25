@@ -9,14 +9,12 @@ export const userResoler: Resolvers['User'] = {
 export const userQueryResolvers: Resolvers['Query'] = {}
 
 export const userMutationResolvers: Resolvers['Mutation'] = {
-  registerUser: (parent, args, context, info) => {
-    const user = repositories.user.upsert({
+  registerUser: async (parent, args, context) => {
+    return repositories.user.upsert({
       select: { id: true, walletAddress: true, createdAt: true },
       where: { id: context.user.uid },
       create: { id: context.user.uid, walletAddress: args.walletAddress },
       update: { walletAddress: args.walletAddress },
     })
-
-    return user
   },
 }

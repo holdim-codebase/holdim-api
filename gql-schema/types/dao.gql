@@ -1,5 +1,6 @@
 type DAO {
   id: ID!
+  snapshotId: ID!
   name: String!
   logo: String
 }

@@ -69,8 +69,5 @@ module.exports = {
     '@typescript-eslint/no-use-before-define': 1,
     'sonarjs/no-identical-functions': 1,
   },
-  ignorePatterns: ['dist', 'src/docs'],
-  parserOptions: {
-    project: '.eslint.tsconfig.json',
-  },
+  ignorePatterns: ['dist', 'generated'],
 }

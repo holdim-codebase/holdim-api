@@ -17,8 +17,9 @@ model User {
   createdAt DateTime @default(now())
 }
 
-model DAO {
+model Dao {
   id   Int    @id @default(autoincrement())
+  snapshotId String @unique
   name String
   logo String
 
@@ -28,8 +29,9 @@ model DAO {
 
 model Proposal {
   id                Int      @id @default(autoincrement())
+  snapshotId String @unique
   title             String
-  dao               DAO      @relation(fields: [daoId], references: [id])
+  dao               Dao      @relation(fields: [daoId], references: [id])
   daoId             Int
   juniorDescription String?
   middleDescription String?
@@ -37,7 +39,6 @@ model Proposal {
   startAt           DateTime
   endAt             DateTime
   author            String
-  totalVoters       Int
 
   createdAt DateTime @default(now())
 }

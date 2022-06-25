@@ -1,14 +1,14 @@
 type Proposal {
   id: ID!
+  snapshotId: ID!
   title: String!
   dao: DAO!
   juniorDescription: String!
   middleDescription: String!
   seniorDescription: String!
   # UNIX Timestamp (in ms)
-  startAt: Int!
+  startAt: String!
   # UNIX Timestamp (in ms)
-  endAt: Int!
+  endAt: String!
   author: String!
-  totalVoters: Int!
 }
