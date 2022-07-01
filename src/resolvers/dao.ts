@@ -10,7 +10,8 @@ export const DaoResolver: Resolvers['DAO'] = {
 }
 
 export const daoQueryResolver: Resolvers['Query'] = {
-  daos: () => {
-    return repositories.dao.findMany()
+  daos: (parent, { ids }) => {
+    const whereQuery: Parameters<typeof repositories['dao']['findMany']>[0] = ids ? { where: { id: { in: ids.map(id => parseInt(id)) }} } : {}
+    return repositories.dao.findMany(whereQuery)
   },
 }
