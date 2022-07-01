@@ -6,6 +6,10 @@ const dataset = [{
     snapshotId: '1inch.eth',
     name: '1inch Network',
     logo: 'https://app.1inch.io/assets/favicon/apple-touch-icon.png',
+    overviewHtml: '<h>Sample text</h>\
+<p>dao overview dao overview dao overview dao overview dao overview dao overview dao overview dao overview dao overview dao overview dao overview dao overview dao overview dao overview dao overview dao overview dao overview dao overview dao overview </p>',
+    tokenOverviewHtml: '<h>Sample text</h>\
+<p>token overview token overview token overview token overview token overview token overview token overview token overview token overview token overview token overview token overview token overview token overview token overview token overview token overview token overview token overview </p>',
   },
   snapshotId: '0x6358c27cd2d5a95e58095e5cc3b1b9a85d2c9af2a363b259431b53718b26dbb6',
   author: '0x824732D3F4Eb94a20254cca9DE10485Ce445Bb40',
@@ -22,6 +26,10 @@ const dataset = [{
     snapshotId: '1inch.eth',
     name: '1inch Network',
     logo: 'https://app.1inch.io/assets/favicon/apple-touch-icon.png',
+    overviewHtml: '<h>Sample text</h>\
+<p>dao overview dao overview dao overview dao overview dao overview dao overview dao overview dao overview dao overview dao overview dao overview dao overview dao overview dao overview dao overview dao overview dao overview dao overview dao overview </p>',
+    tokenOverviewHtml: '<h>Sample text</h>\
+<p>token overview token overview token overview token overview token overview token overview token overview token overview token overview token overview token overview token overview token overview token overview token overview token overview token overview token overview token overview </p>',
   },
   snapshotId: '0xf4f712189924944dfd1cb438dc3235f4f4d5493f8c9db4df2e64c4d421c1f2d0',
   author: '0x824732D3F4Eb94a20254cca9DE10485Ce445Bb40',
@@ -38,6 +46,10 @@ const dataset = [{
     snapshotId: 'uniswap',
     name: 'Uniswap',
     logo: 'ipfs://QmdNntEZMnen3QE9GfHG4heeqMJkFjxQ9BDof4m8xzV6UT',
+    overviewHtml: '<h>Sample text</h>\
+<p>dao overview dao overview dao overview dao overview dao overview dao overview dao overview dao overview dao overview dao overview dao overview dao overview dao overview dao overview dao overview dao overview dao overview dao overview dao overview </p>',
+    tokenOverviewHtml: '<h>Sample text</h>\
+<p>token overview token overview token overview token overview token overview token overview token overview token overview token overview token overview token overview token overview token overview token overview token overview token overview token overview token overview token overview </p>',
   },
   snapshotId: '0x7f196c3444623a33ac147d1676d84e45d3c4c56a94baa85547b77d6fab82faab',
   author: '0x4C0a466DF0628FE8699051b3Ac6506653191cc21',

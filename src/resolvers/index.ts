@@ -1,5 +1,5 @@
 import { Resolvers } from '../generated/graphql'
-import { DaoResolver } from './dao'
+import { DaoResolver, daoQueryResolver } from './dao'
 import { proposalQueryResolvers, proposalResolver } from './proposal'
 import { userMutationResolvers, userResoler } from './user'
 
@@ -9,6 +9,7 @@ export const resolvers: Resolvers = {
   DAO: DaoResolver,
 
   Query: {
+    ...daoQueryResolver,
     ...proposalQueryResolvers,
   },
 

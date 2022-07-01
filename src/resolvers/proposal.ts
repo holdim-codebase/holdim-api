@@ -12,6 +12,8 @@ export const proposalResolver: Resolvers['Proposal'] = {
   middleDescription: ({ middleDescription }) => middleDescription!,
   seniorDescription: ({ seniorDescription }) => seniorDescription,
   title: ({ title }) => title,
+  snapshotLink: ({ snapshotLink }) => snapshotLink,
+  discussionLink: ({ discussionLink }) => discussionLink,
 }
 
 export const proposalQueryResolvers: Resolvers['Query'] = {

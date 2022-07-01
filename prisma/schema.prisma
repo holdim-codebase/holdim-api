@@ -22,6 +22,8 @@ model Dao {
   snapshotId String @unique
   name String
   logo String
+  overviewHtml String
+  tokenOverviewHtml String
 
   createdAt DateTime   @default(now())
   Proposal  Proposal[]
