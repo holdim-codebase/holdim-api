@@ -39,6 +39,8 @@ model Proposal {
   startAt           DateTime
   endAt             DateTime
   author            String
+  snapshotLink      String
+  discussionLink    String?
 
   createdAt DateTime @default(now())
 }

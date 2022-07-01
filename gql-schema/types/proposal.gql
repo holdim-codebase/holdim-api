@@ -11,4 +11,6 @@ type Proposal {
   # UNIX Timestamp (in ms)
   endAt: String!
   author: String!
+  snapshotLink: String!
+  discussionLink: String
 }
