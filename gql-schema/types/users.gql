@@ -1,4 +1,10 @@
+type Wallet {
+  address: String!
+  tokens: [Token!]!
+}
+
 type User {
   id: ID!
-  walletAddress: String!
+  walletAddress: String! @deprecated(reason: "wallet object has required address parameter")
+  wallet: Wallet!
 }

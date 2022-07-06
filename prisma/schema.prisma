@@ -11,29 +11,30 @@ datasource db {
 }
 
 model User {
-  id       String @id @db.VarChar(255)
+  id            String @id @db.VarChar(255)
   walletAddress String @db.VarChar(255)
 
   createdAt DateTime @default(now())
 }
 
 model Dao {
-  id   Int    @id @default(autoincrement())
-  snapshotId String @unique
-  name String
-  logo String
-  overviewHtml String
-  tokenOverviewHtml String
+  id                Int    @id @default(autoincrement())
+  snapshotId        String @unique
+  name              String
+  logo              String
+  overview      String
+  tokenOverview String
 
   createdAt DateTime   @default(now())
   Proposal  Proposal[]
+  Token     Token[]
 }
 
 model Proposal {
   id                Int      @id @default(autoincrement())
-  snapshotId String @unique
+  snapshotId        String   @unique
   title             String
-  dao               Dao      @relation(fields: [daoId], references: [id])
+  dao               Dao      @relation(fields: [daoId], references: [id], onDelete: Cascade)
   daoId             Int
   juniorDescription String?
   middleDescription String?
@@ -45,4 +46,12 @@ model Proposal {
   discussionLink    String?
 
   createdAt DateTime @default(now())
+}
+
+model Token {
+  id    String  @id @db.VarChar(255)
+  name  String?
+  dao   Dao     @relation(fields: [daoId], references: [id], onDelete: Cascade)
+  daoId Int
+  main  Boolean @default(false)
 }

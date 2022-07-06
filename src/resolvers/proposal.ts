@@ -4,7 +4,7 @@ import { repositories } from '../repositories'
 
 export const proposalResolver: Resolvers['Proposal'] = {
   id: ({ id }) => id.toString(),
-  dao: ({ daoId }) => repositories.dao.findFirst({ where: { id: daoId } }) as Promise<Dao>,
+  dao: ({ daoId }) => repositories.dao.findUnique({ where: { id: daoId } }) as Promise<Dao>,
   author: ({ author }) => author,
   startAt: ({ startAt }) => startAt.toString(),
   endAt: ({ endAt }) => endAt.toString(),

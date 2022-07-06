@@ -1,0 +1,13 @@
+type Token {
+  id: ID!
+  name: String
+  # Each DAO will always have one main token
+  main: Boolean
+  personalizedData: TokenPersonalizedData
+  marketCap: Float
+  totalSupply: Float
+}
+
+type TokenPersonalizedData {
+  quantity: String!
+}

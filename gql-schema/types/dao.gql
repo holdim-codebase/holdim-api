@@ -3,6 +3,8 @@ type DAO {
   snapshotId: ID!
   name: String!
   logo: String
-  overviewHtml: String!
-  tokenOverviewHtml: String!
+  overview: String!
+  tokenOverview: String!
+
+  tokens(onlyMain: Boolean): [Token!]
 }

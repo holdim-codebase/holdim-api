@@ -5,13 +5,13 @@ export const DaoResolver: Resolvers['DAO'] = {
   id: ({ id }) => id.toString(),
   logo: ({ logo }) => logo,
   name: ({ name }) => name,
-  overviewHtml: ({ overviewHtml }) => overviewHtml,
-  tokenOverviewHtml: ({ tokenOverviewHtml }) => tokenOverviewHtml,
+  overview: ({ overview }) => overview,
+  tokenOverview: ({ tokenOverview }) => tokenOverview,
 }
 
 export const daoQueryResolver: Resolvers['Query'] = {
   daos: (parent, { ids }) => {
-    const whereQuery: Parameters<typeof repositories['dao']['findMany']>[0] = ids ? { where: { id: { in: ids.map(id => parseInt(id)) }} } : {}
+    const whereQuery: Parameters<typeof repositories['dao']['findMany']>[0] = ids ? { where: { id: { in: ids.map(id => parseInt(id)) } } } : {}
     return repositories.dao.findMany(whereQuery)
   },
 }

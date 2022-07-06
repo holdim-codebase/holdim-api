@@ -1,4 +1,5 @@
 type Query {
+  me: User!
   proposals: [Proposal!]!
   daos(ids: [ID!]): [DAO!]!
 }

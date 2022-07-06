@@ -1,16 +1,43 @@
 import { repositories } from '../src/repositories'
 import { omit } from 'lodash'
 
-const dataset = [{
-  dao: {
+const dao = {
+  uniswap: {
+    snapshotId: 'uniswap',
+    name: 'Uniswap',
+    logo: 'ipfs://QmdNntEZMnen3QE9GfHG4heeqMJkFjxQ9BDof4m8xzV6UT',
+    overview: '<h>Sample text</h>\
+<p>dao overview dao overview dao overview dao overview dao overview dao overview dao overview dao overview dao overview dao overview dao overview dao overview dao overview dao overview dao overview dao overview dao overview dao overview dao overview </p>',
+    tokenOverview: '<h>Sample text</h>\
+<p>token overview token overview token overview token overview token overview token overview token overview token overview token overview token overview token overview token overview token overview token overview token overview token overview token overview token overview token overview </p>',
+    tokens: [{
+      id: '0x1f9840a85d5af5bf1d1762f925bdaddc4201f984',
+      name: 'UNI',
+    }]
+  },
+  oneInch: {
     snapshotId: '1inch.eth',
     name: '1inch Network',
     logo: 'https://app.1inch.io/assets/favicon/apple-touch-icon.png',
-    overviewHtml: '<h>Sample text</h>\
-<p>dao overview dao overview dao overview dao overview dao overview dao overview dao overview dao overview dao overview dao overview dao overview dao overview dao overview dao overview dao overview dao overview dao overview dao overview dao overview </p>',
-    tokenOverviewHtml: '<h>Sample text</h>\
-<p>token overview token overview token overview token overview token overview token overview token overview token overview token overview token overview token overview token overview token overview token overview token overview token overview token overview token overview token overview </p>',
+    overview: '<h>Sample text</h>\
+  <p>dao overview dao overview dao overview dao overview dao overview dao overview dao overview dao overview dao overview dao overview dao overview dao overview dao overview dao overview dao overview dao overview dao overview dao overview dao overview </p>',
+    tokenOverview: '<h>Sample text</h>\
+  <p>token overview token overview token overview token overview token overview token overview token overview token overview token overview token overview token overview token overview token overview token overview token overview token overview token overview token overview token overview </p>',
+    tokens: [{
+      id: '0x111111111117dc0aa78b770fa6a738034120c302',
+      name: '1INCH',
+    }, {
+      id: '0xA0446D8804611944F1B527eCD37d7dcbE442caba',
+      name: 'st1INCH',
+    }, {
+      id: '0x03d1B1A56708FA298198DD5e23651a29B76a16d2',
+      name: 'v1INCH',
+    }],
   },
+}
+
+const dataset = [{
+  dao: dao.oneInch,
   snapshotId: '0x6358c27cd2d5a95e58095e5cc3b1b9a85d2c9af2a363b259431b53718b26dbb6',
   author: '0x824732D3F4Eb94a20254cca9DE10485Ce445Bb40',
   startAt: new Date(1651561423e3),
@@ -22,15 +49,7 @@ const dataset = [{
   snapshotLink: 'https://snapshot.org/#/1inch.eth/proposal/0x6358c27cd2d5a95e58095e5cc3b1b9a85d2c9af2a363b259431b53718b26dbb6',
   discussionLink: 'https://gov.1inch.io/t/1ip-07-integrate-balancer-boosted-pools-in-the-1inch-aggregation-protocol/3096',
 }, {
-  dao: {
-    snapshotId: '1inch.eth',
-    name: '1inch Network',
-    logo: 'https://app.1inch.io/assets/favicon/apple-touch-icon.png',
-    overviewHtml: '<h>Sample text</h>\
-<p>dao overview dao overview dao overview dao overview dao overview dao overview dao overview dao overview dao overview dao overview dao overview dao overview dao overview dao overview dao overview dao overview dao overview dao overview dao overview </p>',
-    tokenOverviewHtml: '<h>Sample text</h>\
-<p>token overview token overview token overview token overview token overview token overview token overview token overview token overview token overview token overview token overview token overview token overview token overview token overview token overview token overview token overview </p>',
-  },
+  dao: dao.oneInch,
   snapshotId: '0xf4f712189924944dfd1cb438dc3235f4f4d5493f8c9db4df2e64c4d421c1f2d0',
   author: '0x824732D3F4Eb94a20254cca9DE10485Ce445Bb40',
   endAt: new Date(1647368414e3),
@@ -42,15 +61,7 @@ const dataset = [{
   snapshotLink: 'https://snapshot.org/#/1inch.eth/proposal/0xf4f712189924944dfd1cb438dc3235f4f4d5493f8c9db4df2e64c4d421c1f2d0',
   discussionLink: '',
 }, {
-  dao: {
-    snapshotId: 'uniswap',
-    name: 'Uniswap',
-    logo: 'ipfs://QmdNntEZMnen3QE9GfHG4heeqMJkFjxQ9BDof4m8xzV6UT',
-    overviewHtml: '<h>Sample text</h>\
-<p>dao overview dao overview dao overview dao overview dao overview dao overview dao overview dao overview dao overview dao overview dao overview dao overview dao overview dao overview dao overview dao overview dao overview dao overview dao overview </p>',
-    tokenOverviewHtml: '<h>Sample text</h>\
-<p>token overview token overview token overview token overview token overview token overview token overview token overview token overview token overview token overview token overview token overview token overview token overview token overview token overview token overview token overview </p>',
-  },
+  dao: dao.uniswap,
   snapshotId: '0x7f196c3444623a33ac147d1676d84e45d3c4c56a94baa85547b77d6fab82faab',
   author: '0x4C0a466DF0628FE8699051b3Ac6506653191cc21',
   startAt: new Date(1654183625e3),
@@ -64,19 +75,30 @@ const dataset = [{
 }]
 
 const main = async () => {
-  const existingProposals = await repositories.proposal.findMany({ take: 1 })
+  const forceUpsert = process.env.SEED_FORCE_UPSERT
+  if (!forceUpsert) {
+    const existingProposals = await repositories.proposal.findMany({ take: 1 })
 
-  if (existingProposals.length) {
-    return
+    if (existingProposals.length) {
+      return
+    }
   }
 
   await Promise.all(dataset.map(async (propData) => {
+    const { tokens, ...dao } = propData.dao
     const { id: daoId } = await repositories.dao.upsert({
       select: { id: true },
       where: { snapshotId: propData.dao.snapshotId },
-      create: propData.dao,
-      update: propData.dao,
+      create: dao,
+      update: dao,
     })
+    await Promise.all(
+      tokens.map(token => repositories.token.upsert({
+        where: { id: token.id },
+        create: { ...token, daoId },
+        update: { ...token, daoId },
+      }))
+    )
 
     await repositories.proposal.upsert({
       where: { snapshotId: propData.snapshotId },

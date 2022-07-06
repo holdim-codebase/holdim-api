@@ -16,17 +16,21 @@
     "lint": "eslint 'src/**/*.ts' -f codeframe",
     "build:gql": "graphql-codegen --config codegen.yml",
     "script:auth": "ts-node ./scripts/getAuthToken",
-    "start:dev": "yarn run build && GOOGLE_APPLICATION_CREDENTIALS=`pwd`/local_secrets/fb_service_key.json yarn run start"
+    "start:dev": "yarn run build && GOOGLE_APPLICATION_CREDENTIALS=`pwd`/local_secrets/fb_service_key.json yarn run start",
+    "db:seed": "npx prisma db sexport eed",
+    "db:seed:force": "SEED_FORCE_UPSERT=true npx prisma db seed"
   },
   "dependencies": {
     "@graphql-codegen/cli": "^2.6.2",
     "@prisma/client": "^3.15.1",
     "apollo-server": "^3.9.0",
+    "dataloader": "^2.1.0",
     "firebase-admin": "^11.0.0",
     "graphql": "^16.5.0",
     "lodash": "^4.17.21",
     "pino": "7.1.0",
-    "prisma": "^3.15.1"
+    "prisma": "^3.15.1",
+    "socket.io-client": "2.4.0"
   },
   "devDependencies": {
     "@graphql-codegen/cli": "2.6.2",

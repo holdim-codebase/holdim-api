@@ -1,4 +1,4 @@
-overwrite: true
+
 schema: "./gql-schema"
 documents: null
 generates:
@@ -7,8 +7,11 @@ generates:
       - "typescript"
       - "typescript-resolvers"
 config:
+  contextType: ../types#Context
   mappers:
+    TokenPersonalizedData: ../services/zerion/types#ZerionNamespaces#Asset
+    Token: ../services/zerion/types#ZerionNamespaces#Asset
     User: .prisma/client#User as UserModel
+    Wallet: .prisma/client#User as UserModel
     Proposal: .prisma/client#Proposal as ProposalModel
     DAO: .prisma/client#Dao as DAOModel
-    contextType: ../types#Context
