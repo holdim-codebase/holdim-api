@@ -15,3 +15,4 @@ config:
     Wallet: .prisma/client#User as UserModel
     Proposal: .prisma/client#Proposal as ProposalModel
     DAO: .prisma/client#Dao as DAOModel
+    DaoPersonalizedData: .prisma/client#Dao as DAOModel

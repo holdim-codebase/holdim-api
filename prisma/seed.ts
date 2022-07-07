@@ -11,7 +11,7 @@ const dao = {
     tokenOverview: '<h>Sample text</h>\
 <p>token overview token overview token overview token overview token overview token overview token overview token overview token overview token overview token overview token overview token overview token overview token overview token overview token overview token overview token overview </p>',
     tokens: [{
-      id: '0x1f9840a85d5af5bf1d1762f925bdaddc4201f984',
+      id: '0x1f9840a85d5af5bf1d1762f925bdaddc4201f984'.toLowerCase(),
       name: 'UNI',
     }]
   },
@@ -24,13 +24,13 @@ const dao = {
     tokenOverview: '<h>Sample text</h>\
   <p>token overview token overview token overview token overview token overview token overview token overview token overview token overview token overview token overview token overview token overview token overview token overview token overview token overview token overview token overview </p>',
     tokens: [{
-      id: '0x111111111117dc0aa78b770fa6a738034120c302',
+      id: '0x111111111117dc0aa78b770fa6a738034120c302'.toLowerCase(),
       name: '1INCH',
     }, {
-      id: '0xA0446D8804611944F1B527eCD37d7dcbE442caba',
+      id: '0xA0446D8804611944F1B527eCD37d7dcbE442caba'.toLowerCase(),
       name: 'st1INCH',
     }, {
-      id: '0x03d1B1A56708FA298198DD5e23651a29B76a16d2',
+      id: '0x03d1B1A56708FA298198DD5e23651a29B76a16d2'.toLowerCase(),
       name: 'v1INCH',
     }],
   },
@@ -39,7 +39,7 @@ const dao = {
 const dataset = [{
   dao: dao.oneInch,
   snapshotId: '0x6358c27cd2d5a95e58095e5cc3b1b9a85d2c9af2a363b259431b53718b26dbb6',
-  author: '0x824732D3F4Eb94a20254cca9DE10485Ce445Bb40',
+  author: '0x824732D3F4Eb94a20254cca9DE10485Ce445Bb40'.toLowerCase(),
   startAt: new Date(1651561423e3),
   endAt: new Date(1652166223e3),
   title: '[1IP-07] Integrate Balancer Boosted Pools in the 1inch Aggregation Protocol',
@@ -51,7 +51,7 @@ const dataset = [{
 }, {
   dao: dao.oneInch,
   snapshotId: '0xf4f712189924944dfd1cb438dc3235f4f4d5493f8c9db4df2e64c4d421c1f2d0',
-  author: '0x824732D3F4Eb94a20254cca9DE10485Ce445Bb40',
+  author: '0x824732D3F4Eb94a20254cca9DE10485Ce445Bb40'.toLowerCase(),
   endAt: new Date(1647368414e3),
   juniorDescription: 'Test',
   middleDescription: 'Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test',
@@ -63,7 +63,7 @@ const dataset = [{
 }, {
   dao: dao.uniswap,
   snapshotId: '0x7f196c3444623a33ac147d1676d84e45d3c4c56a94baa85547b77d6fab82faab',
-  author: '0x4C0a466DF0628FE8699051b3Ac6506653191cc21',
+  author: '0x4C0a466DF0628FE8699051b3Ac6506653191cc21'.toLowerCase(),
   startAt: new Date(1654183625e3),
   endAt: new Date(1654444800e3),
   juniorDescription: 'Test',
@@ -84,7 +84,7 @@ const main = async () => {
     }
   }
 
-  await Promise.all(dataset.map(async (propData) => {
+  for (const propData of dataset) {
     const { tokens, ...dao } = propData.dao
     const { id: daoId } = await repositories.dao.upsert({
       select: { id: true },
@@ -105,7 +105,7 @@ const main = async () => {
       create: { ...omit(propData, 'dao'), daoId },
       update: omit(propData, 'dao'),
     })
-  }))
+  }
 }
 
 main()

@@ -2,7 +2,7 @@
   "ts-node": {
     "files": true
   },
-  "include": ["src/**/*", ".eslintrc.js"],
+  "include": ["src/**/*", ".eslintrc.js", "seed.ts"],
   "exclude": ["prisma/**/*", "scripts/**/*"],
   "compilerOptions": {
     "target": "ES2019",
