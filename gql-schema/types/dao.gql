@@ -1,3 +1,7 @@
+type DaoPersonalizedData {
+  followed: Boolean!
+}
+
 type DAO {
   id: ID!
   snapshotId: ID!
@@ -7,4 +11,5 @@ type DAO {
   tokenOverview: String!
 
   tokens(onlyMain: Boolean): [Token!]
+  personalizedData: DaoPersonalizedData
 }

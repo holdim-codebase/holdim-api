@@ -6,4 +6,7 @@ type Query {
 
 type Mutation {
   registerUser(walletAddress: ID!): User!
+
+  followDao(daoId: ID!): DAO!
+  unfollowDao(daoId: ID!): DAO!
 }
