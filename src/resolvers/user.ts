@@ -14,7 +14,8 @@ export const walletResolver: Resolvers['Wallet'] = {
 export const userResoler: Resolvers['User'] = {
   id: ({ id }) => id,
   walletAddress: ({ walletAddress }) => walletAddress,
-  wallet: (user) => user,
+  wallet: user => user,
+  followedDaos: ({ id: userId }) => repositories.dao.findMany({ where: { UserDaoFollow: { some: { userId } } } }),
 }
 
 export const userQueryResolvers: Resolvers['Query'] = {
@@ -25,10 +26,17 @@ export const userQueryResolvers: Resolvers['Query'] = {
 
 export const userMutationResolvers: Resolvers['Mutation'] = {
   registerUser: async (parent, args, context) => {
+    const assets = await getWalletAssets.load(args.walletAddress)
+    let daosToFollow = await repositories.dao.findMany({ where: { Token: { some: { id: { in: Object.keys(assets).map(address => address.toLowerCase()) } } } } })
+
+    if (!daosToFollow.length) {
+      daosToFollow = await repositories.dao.findMany()
+    }
+
     return repositories.user.upsert({
       select: { id: true, walletAddress: true, createdAt: true },
       where: { id: context.user.uid },
-      create: { id: context.user.uid, walletAddress: args.walletAddress },
+      create: { id: context.user.uid, walletAddress: args.walletAddress, UserDaoFollow: { createMany: { data: daosToFollow.map(dao => ({ daoId: dao.id })) } } },
       update: { walletAddress: args.walletAddress },
     })
   },
