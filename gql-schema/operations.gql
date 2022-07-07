@@ -1,7 +1,7 @@
 type Query {
   me: User!
   proposals: [Proposal!]!
-  daos(ids: [ID!]): [DAO!]!
+  daos(ids: [ID!], onlyFollowed: Boolean): [DAO!]!
 }
 
 type Mutation {

@@ -30,8 +30,13 @@ export const DaoResolver: Resolvers['DAO'] = {
 }
 
 export const daoQueryResolver: Resolvers['Query'] = {
-  daos: (parent, { ids }) => {
+  daos: (parent, { ids, onlyFollowed }, ctx) => {
     const whereQuery: Parameters<typeof repositories['dao']['findMany']>[0] = ids ? { where: { id: { in: ids.map(id => parseInt(id)) } } } : {}
+
+    if (onlyFollowed) {
+      whereQuery.where = { ...whereQuery.where, UserDaoFollow: { some: { userId: ctx.user.uid } } }
+    }
+
     return repositories.dao.findMany(whereQuery)
   },
 }
