@@ -4,7 +4,7 @@ import { logger } from '../logging'
 import { zerionService } from '../services/zerion'
 import { ZerionNamespaces } from '../services/zerion/types'
 
-export const getWalletAssets = new DataLoader<User['walletAddress'], ZerionNamespaces.AddressNamespace.PortfolioByAddressResponse>(
+export const getWalletAssets = new DataLoader<User['walletAddress'], ZerionNamespaces.AddressNamespace.PortfolioByAddressResponse['payload']['assets']>(
   walletAddresses => {
     return Promise.all(walletAddresses.map(async walletAddress => {
       try {

@@ -33,7 +33,7 @@ class ZerionService {
     this.assetsSocket = getSocket('assets')
   }
 
-  getPortfolioByAddress = (walletAddress: string): Promise<ZerionNamespaces.AddressNamespace.PortfolioByAddressResponse> => request(
+  getPortfolioByAddress = async (walletAddress: string) => (await request(
     this.adddressSocket,
     [
       'get',
@@ -44,7 +44,7 @@ class ZerionService {
         },
       },
     ]
-  )
+  ) as ZerionNamespaces.AddressNamespace.PortfolioByAddressResponse).payload.assets
 
   /**
    *

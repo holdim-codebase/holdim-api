@@ -7,7 +7,7 @@ export const tokenPersonlizedDataResolver: Resolvers['TokenPersonalizedData'] = 
   quantity: async ({ id }, args, ctx) => {
     const user = await repositories.user.findUnique({ where: { id: ctx.user.uid } })
     const walletAssets = await getWalletAssets.load(user!.walletAddress)
-    return walletAssets.payload.assets[id].quantity
+    return walletAssets[id]?.quantity ?? 0
   },
 }
 

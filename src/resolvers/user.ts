@@ -6,8 +6,8 @@ import { getWalletAssets } from '../repositories/user'
 export const walletResolver: Resolvers['Wallet'] = {
   address: ({ walletAddress }) => walletAddress,
   tokens: async ({ walletAddress }) => {
-    const response = await getWalletAssets.load(walletAddress)
-    return Object.values(response.payload.assets).map(({ asset }) => asset)
+    const assets = await getWalletAssets.load(walletAddress)
+    return Object.values(assets).map(({ asset }) => asset)
   },
 }
 
