@@ -23,6 +23,10 @@ export const tokenResoler: Resolvers['Token'] = {
     const token = await getTokenInfo.load(id)
     return token.total_supply ?? null
   },
+  price: async ({ id }) => {
+    const token = await getTokenInfo.load(id)
+    return token.asset.price?.value ?? null
+  },
   personalizedData: token => token,
 }
 

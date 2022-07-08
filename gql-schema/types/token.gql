@@ -6,6 +6,7 @@ type Token {
   personalizedData: TokenPersonalizedData
   marketCap: Float
   totalSupply: Float
+  price: Float
 }
 
 type TokenPersonalizedData {
