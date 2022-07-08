@@ -1,5 +1,7 @@
 import { ApolloError } from 'apollo-server'
+import { POSGTRES_ERROR_CODES } from '../errors/postgres'
 import { Resolvers } from '../generated/graphql'
+import { logger } from '../logging'
 import { repositories } from '../repositories'
 import { getTokenInfo } from '../repositories/token'
 import { ZerionNamespaces } from '../services/zerion/types'
@@ -56,9 +58,16 @@ export const daoMutationResolver: Resolvers['Mutation'] = {
     return (await repositories.dao.findUnique({ where: { id: Number(daoId) } }))!
   },
   unfollowDao: async (parent, { daoId }, ctx) => {
-    await repositories.userDaoFollow.delete({
-      where: { daoId_userId: { daoId: Number(daoId), userId: ctx.user.uid } },
-    })
+    try {
+      await repositories.userDaoFollow.delete({
+        where: { daoId_userId: { daoId: Number(daoId), userId: ctx.user.uid } },
+      })
+    } catch (error) {
+      if (typeof error === 'object' && (error as any)?.code !== POSGTRES_ERROR_CODES.DELETE_NOT_FOUND) {
+        logger.error(error)
+        throw error as Error
+      }
+    }
 
     return (await repositories.dao.findUnique({ where: { id: Number(daoId) } }))!
   },
