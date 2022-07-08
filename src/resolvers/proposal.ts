@@ -17,7 +17,11 @@ export const proposalResolver: Resolvers['Proposal'] = {
 }
 
 export const proposalQueryResolvers: Resolvers['Query'] = {
-  proposals: () => {
-    return repositories.proposal.findMany()
+  proposals: (parent, { onlyFollowedDaos }, ctx) => {
+    const query: Parameters<typeof repositories['proposal']['findMany']>[0] = {}
+    if (onlyFollowedDaos) {
+      query.where = { dao: { UserDaoFollow: { some: { userId: ctx.user.uid } } } }
+    }
+    return repositories.proposal.findMany(query)
   },
 }

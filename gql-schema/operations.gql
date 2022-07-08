@@ -1,6 +1,6 @@
 type Query {
   me: User!
-  proposals: [Proposal!]!
+  proposals(onlyFollowedDaos: Boolean): [Proposal!]!
   daos(ids: [ID!], onlyFollowed: Boolean): [DAO!]!
 }
 
