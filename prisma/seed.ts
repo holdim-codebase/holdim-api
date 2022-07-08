@@ -1,5 +1,5 @@
 import { repositories } from '../src/repositories'
-import { omit } from 'lodash'
+import { omit, trimEnd } from 'lodash'
 
 const dao = {
   uniswap: {
@@ -13,6 +13,7 @@ const dao = {
     tokens: [{
       id: '0x1f9840a85d5af5bf1d1762f925bdaddc4201f984'.toLowerCase(),
       name: 'UNI',
+      main: true,
     }]
   },
   oneInch: {
@@ -26,6 +27,7 @@ const dao = {
     tokens: [{
       id: '0x111111111117dc0aa78b770fa6a738034120c302'.toLowerCase(),
       name: '1INCH',
+      main: true,
     }, {
       id: '0xA0446D8804611944F1B527eCD37d7dcbE442caba'.toLowerCase(),
       name: 'st1INCH',

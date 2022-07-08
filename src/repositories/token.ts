@@ -8,7 +8,6 @@ export const getTokenInfo = new DataLoader<Token['id'], ZerionNamespaces.AssetsN
   tokenIds => {
     return Promise.all(tokenIds.map(async tokenId => {
       try {
-        logger.debug({ tokenId, message: 'Request token' })
         return (await zerionService.getTokenInfo([tokenId]))[0]
       } catch (error) {
         logger.error({ tokenId, message: 'Request token failed' })

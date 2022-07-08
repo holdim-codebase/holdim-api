@@ -7,12 +7,14 @@ import { NamespaceSocket, ZerionRequest, ZerionNamespaces } from './types'
 
 const request = (socketNamespace: NamespaceSocket, request: ZerionRequest) => {
   const [action, requestBody] = request
-  return new Promise<any>((resolve, reject) => {
-    setTimeout(() => reject(new Error('Zerion request timed out')), 10e3)
+    logger.info({ message: 'Zerion request', action, requestBody })
+    return new Promise<any>((resolve, reject) => {
+    const timer = setTimeout(() => reject(new Error('Zerion request timed out')), 10e3)
     const { socket, namespace } = socketNamespace
     const handleReceive = (data: any) => {
-      logger.debug({ action, requestBody, response: data })
+      logger.info({ message: 'Zerion response', action, requestBody, response: data })
       if (data.meta.status === 'ok') {
+        clearTimeout(timer)
         resolve(data)
       }
       reject(new Error(`Invalid data: ${JSON.stringify(data)}`))
@@ -33,36 +35,50 @@ class ZerionService {
     this.assetsSocket = getSocket('assets')
   }
 
-  getPortfolioByAddress = async (walletAddress: string) => (await request(
-    this.adddressSocket,
-    [
-      'get',
-      {
-        scope: ['assets'],
-        payload: {
-          address: walletAddress,
+  getPortfolioByAddress = async (walletAddress: string) => {
+    const socketNamespace = getSocket('address')
+    const response: ZerionNamespaces.AddressNamespace.PortfolioByAddressResponse = await request(
+      this.adddressSocket,
+      [
+        'get',
+        {
+          scope: ['assets'],
+          payload: {
+            address: walletAddress,
+          },
         },
-      },
-    ]
-  ) as ZerionNamespaces.AddressNamespace.PortfolioByAddressResponse).payload.assets
+      ]
+    )
+
+    await socketNamespace.socket.disconnect()
+
+    return response.payload.assets
+  }
 
   /**
    *
    * @param tokenIds
    * @returns If token is not found -> it's missing in response
    */
-  getTokenInfo = async (tokenIds: ReadonlyArray<Token['id']>): Promise<ZerionNamespaces.AssetsNamespace.AssetInfo[]> => (await request(
-    this.assetsSocket,
-    [
-      'get',
-      {
-        scope: ['info'],
-        payload: {
-          asset_codes: tokenIds,
+  getTokenInfo = async (tokenIds: ReadonlyArray<Token['id']>): Promise<ZerionNamespaces.AssetsNamespace.AssetInfo[]> => {
+    const socketNamespace = getSocket('assets')
+    const response = await request(
+      socketNamespace,
+      [
+        'get',
+        {
+          scope: ['info'],
+          payload: {
+            asset_codes: tokenIds,
+          },
         },
-      },
-    ]
-  )).payload.info
+      ]
+    )
+
+    await socketNamespace.socket.disconnect()
+
+    return response.payload.info
+  }
 }
 
 export const zerionService = new ZerionService()
