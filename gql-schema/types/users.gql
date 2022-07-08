@@ -8,4 +8,5 @@ type User {
   walletAddress: String! @deprecated(reason: "wallet object has required address parameter")
   wallet: Wallet!
   followedDaos: [DAO!]!
+  avatarUrl: String!
 }
