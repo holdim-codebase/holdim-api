@@ -7,6 +7,8 @@ type Token {
   marketCap: Float
   totalSupply: Float
   price: Float
+  decimals: Int!
+  symbol: String!
 }
 
 type TokenPersonalizedData {
