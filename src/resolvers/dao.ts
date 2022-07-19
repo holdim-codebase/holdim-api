@@ -19,7 +19,7 @@ export const DaoResolver: Resolvers['DAO'] = {
   overview: ({ overview }) => overview,
   tokenOverview: ({ tokenOverview }) => tokenOverview,
   tokens: async ({ id: daoId }, { onlyMain }) => {
-    const tokenQuery: Parameters<typeof repositories['token']['findMany']>[0] = { where: { daoId } }
+    const tokenQuery: Parameters<typeof repositories['token']['findMany']>[0] = { where: { daoId }, orderBy: { createdAt: 'desc' } }
     if (onlyMain) { tokenQuery.where = { ...tokenQuery.where, main: true } }
     const tokens = await repositories.token.findMany(tokenQuery)
 
@@ -36,7 +36,7 @@ export const DaoResolver: Resolvers['DAO'] = {
 
 export const daoQueryResolver: Resolvers['Query'] = {
   daos: (parent, { ids, onlyFollowed }, ctx) => {
-    const whereQuery: Parameters<typeof repositories['dao']['findMany']>[0] = ids ? { where: { id: { in: ids.map(id => parseInt(id)) } } } : {}
+    const whereQuery: Parameters<typeof repositories['dao']['findMany']>[0] = ids ? { where: { id: { in: ids.map(id => parseInt(id)) } } } : { orderBy: { name: 'asc' } }
 
     if (onlyFollowed) {
       whereQuery.where = { ...whereQuery.where, UserDaoFollow: { some: { userId: ctx.user.uid } } }
