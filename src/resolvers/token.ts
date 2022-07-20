@@ -9,7 +9,7 @@ export const tokenPersonlizedDataResolver: Resolvers['TokenPersonalizedData'] = 
     const token = await getTokenInfo.load(id)
     const user = await repositories.user.findUnique({ where: { id: ctx.user.uid } })
     const walletAssets = await getWalletAssets.load(user!.walletAddress)
-    const quantityWithoutDivisionByDecimals = walletAssets[id]?.quantity ?? 0
+    const quantityWithoutDivisionByDecimals = walletAssets[id]?.quantity ?? '0'
     return formatTokenWithDecimals(quantityWithoutDivisionByDecimals, token.asset.decimals)
   },
 }
