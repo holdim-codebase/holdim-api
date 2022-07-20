@@ -80,7 +80,15 @@ Rewards come from two sources:
     snapshotId: 'sushigov.eth',
     name: 'Sushi',
     logo: 'ipfs://QmT1Ban8im8JQm2gqYSoMGaLZTgxR8nFyrYBF7MgWvRKFh',
-    overview: '',
+    overview: `## Overview
+
+The SushiSwap community governs the project through forum discussion and voting on proposals. Only proposals that are posted on the SushiSwap Snapshot voting system by the CORE team can be considered binding if they pass with a quorum.
+
+The community votes on major structural changes and use of the devfund wallet, while the core team decides on smaller changes affecting operations, such as changes to the SushiSwap menu or farming pairs. The mandate for this comes from the proposal linked in the text.
+
+Any use of the devfund wallet requires approval from the Multisig team, which is made up of trusted members of the DeFi & Ethereum ecosystem. The Ops Multisig team must also approve any changes within their purview, such as rebalancing and administration of farming pools and use of the growth fund.
+
+The goal is to establish a DAO with working, trustless governance. This is not an easy task, and all are welcome to discuss how the future DAO should work on the forums and in the #governance channel of the Discord server.`,
     tokenOverview: '',
     tokens: [{
       id: '0x6b3595068778dd592e39a122f4f5a5cf09c90fe2'.toLowerCase(),
@@ -89,9 +97,9 @@ Rewards come from two sources:
     }]
   },
   ens: {
-    snapshotId: 'sushigov.eth',
-    name: 'Sushi',
-    logo: 'ipfs://QmT1Ban8im8JQm2gqYSoMGaLZTgxR8nFyrYBF7MgWvRKFh',
+    snapshotId: 'ens.eth',
+    name: 'ENS',
+    logo: 'ipfs://QmSL2X1h1uk26ahSALTw2qKyc61VaySRRstueVMm1Aym3e',
     overview: '',
     tokenOverview: '',
     tokens: [{
@@ -105,7 +113,18 @@ Rewards come from two sources:
     name: 'Uniswap',
     logo: 'ipfs://QmdNntEZMnen3QE9GfHG4heeqMJkFjxQ9BDof4m8xzV6UT',
     overview: '',
-    tokenOverview: '',
+    tokenOverview: `## Governs
+1. Uniswap governance
+
+2. UNI community treasury
+
+3. The protocol fee switch
+
+4. uniswap.eth ENS name
+
+5. Uniswap Default List (tokens.uniswap.eth)
+
+6. SOCKS liquidity tokens`,
     tokens: [{
       id: '0x1f9840a85d5af5bf1d1762f925bdaddc4201f984'.toLowerCase(),
       name: 'UNI',

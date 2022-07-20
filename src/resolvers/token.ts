@@ -1,8 +1,8 @@
-import { BigNumber } from 'ethers'
 import { Resolvers } from '../generated/graphql'
 import { repositories } from '../repositories'
 import { getTokenInfo } from '../repositories/token'
 import { getWalletAssets } from '../repositories/user'
+import { formatTokenWithDecimals } from '../utils'
 
 export const tokenPersonlizedDataResolver: Resolvers['TokenPersonalizedData'] = {
   quantity: async ({ id }, args, ctx) => {
@@ -10,7 +10,7 @@ export const tokenPersonlizedDataResolver: Resolvers['TokenPersonalizedData'] = 
     const user = await repositories.user.findUnique({ where: { id: ctx.user.uid } })
     const walletAssets = await getWalletAssets.load(user!.walletAddress)
     const quantityWithoutDivisionByDecimals = walletAssets[id]?.quantity ?? 0
-    return (BigNumber.from(quantityWithoutDivisionByDecimals).div(BigNumber.from(10).pow(token.asset.decimals))).toString()
+    return formatTokenWithDecimals(quantityWithoutDivisionByDecimals, token.asset.decimals)
   },
 }
 
@@ -29,10 +29,6 @@ export const tokenResoler: Resolvers['Token'] = {
   price: async ({ id }) => {
     const token = await getTokenInfo.load(id)
     return token.asset.price?.value ?? null
-  },
-  decimals: async ({ id }) => {
-    const token = await getTokenInfo.load(id)
-    return token.asset.decimals
   },
   symbol: async ({ id }) => {
     const token = await getTokenInfo.load(id)
