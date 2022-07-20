@@ -16,7 +16,7 @@ export const userResoler: Resolvers['User'] = {
   walletAddress: ({ walletAddress }) => walletAddress,
   wallet: user => user,
   followedDaos: ({ id: userId }) => repositories.dao.findMany({ where: { UserDaoFollow: { some: { userId } } } }),
-  avatarUrl: () => 'https://storage.googleapis.com/holdim-items/images/Frame%2043.png',
+  avatarUrl: () => 'https://storage.googleapis.com/holdim-items/images/Frame%2043%20(1).png',
 }
 
 export const userQueryResolvers: Resolvers['Query'] = {
