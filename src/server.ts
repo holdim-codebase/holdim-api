@@ -1,10 +1,11 @@
 import { ApolloServer, AuthenticationError } from 'apollo-server'
-import { logger } from './logging'
+import { logger, loggingPlugin } from './logging'
 import { readFileSync, readdirSync } from 'fs'
 import { resolvers } from './resolvers'
 import path from 'path'
 import { getFirebaseUser } from './services/firebase'
 import { DecodedIdToken } from 'firebase-admin/lib/auth/token-verifier'
+import crypto from 'crypto'
 
 export const server = new ApolloServer({
   typeDefs: [readFileSync('./gql-schema/operations.gql').toString('utf-8'), ...readdirSync('./gql-schema/types').map(typePath => readFileSync(path.join('./gql-schema/types', typePath)).toString('utf-8'))],
@@ -21,6 +22,10 @@ export const server = new ApolloServer({
 
     return {
       user,
+      requestId: crypto.randomUUID(),
     }
   },
+  plugins: [
+    loggingPlugin,
+  ],
 })
