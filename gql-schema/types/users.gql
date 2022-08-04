@@ -1,5 +1,6 @@
 type Wallet {
   address: String!
+  ens: String
   tokens: [Token!]!
 }
 

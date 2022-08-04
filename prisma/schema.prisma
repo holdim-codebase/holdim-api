@@ -13,6 +13,7 @@ datasource db {
 model User {
   id            String @id @db.VarChar(255)
   walletAddress String @db.VarChar(255)
+  ens String? @db.VarChar(255)
 
   createdAt     DateTime        @default(now())
   proposals     Proposal[]

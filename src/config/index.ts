@@ -8,6 +8,9 @@ const requiredToBe = (value: any, type: 'string'|'number') => {
 
 export const config = {
   services: {
+    alchemy: {
+      apiKey: requiredToBe(process.env.ALCHEMY_API_KEY, 'string'),
+    },
     zerion: {
       apiKey: requiredToBe(process.env.ZERION_API_KEY, 'string'),
       url: 'wss://api-v4.zerion.io/',
