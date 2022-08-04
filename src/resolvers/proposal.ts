@@ -1,4 +1,5 @@
 import { Dao } from '@prisma/client'
+import { isUndefined, omitBy } from 'lodash'
 import { Resolvers } from '../generated/graphql'
 import { repositories } from '../repositories'
 
@@ -17,11 +18,23 @@ export const proposalResolver: Resolvers['Proposal'] = {
 }
 
 export const proposalQueryResolvers: Resolvers['Query'] = {
-  proposals: (parent, { onlyFollowedDaos }, ctx) => {
-    const query: Parameters<typeof repositories['proposal']['findMany']>[0] = { orderBy: { startAt: 'desc' } }
-    if (onlyFollowedDaos) {
-      query.where = { dao: { UserDaoFollow: { some: { userId: ctx.user.uid } } } }
-    }
-    return repositories.proposal.findMany(query)
+  proposals: async (parent, { onlyFollowedDaos, daoIds }, ctx) => {
+    await repositories.proposal.findMany({
+      orderBy: { startAt: 'desc' },
+      where: {
+        dao: {
+          id: { in: [] },
+        },
+      },
+    })
+    return repositories.proposal.findMany({
+      orderBy: { startAt: 'desc' },
+      where: {
+        dao: omitBy({
+            id: daoIds ? { in: daoIds.map(Number) } : undefined,
+            UserDaoFollow: onlyFollowedDaos ? { some: { userId: ctx.user.uid } } : undefined,
+          }, isUndefined),
+      },
+    })
   },
 }
