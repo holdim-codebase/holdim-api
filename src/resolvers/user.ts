@@ -2,9 +2,11 @@ import { User } from '@prisma/client'
 import { Resolvers } from '../generated/graphql'
 import { repositories } from '../repositories'
 import { getWalletAssets } from '../repositories/user'
+import { processWalletAddress } from '../services/blockchain'
 
 export const walletResolver: Resolvers['Wallet'] = {
   address: ({ walletAddress }) => walletAddress,
+  ens: ({ ens }) => ens,
   tokens: async ({ walletAddress }) => {
     const assets = await getWalletAssets.load(walletAddress)
     return Object.values(assets).map(({ asset }) => asset)
@@ -27,7 +29,8 @@ export const userQueryResolvers: Resolvers['Query'] = {
 
 export const userMutationResolvers: Resolvers['Mutation'] = {
   registerUser: async (parent, args, context) => {
-    const assets = await getWalletAssets.load(args.walletAddress)
+    const { hexAddress, ens } = await processWalletAddress(args.walletAddress)
+    const assets = await getWalletAssets.load(hexAddress)
     let daosToFollow = await repositories.dao.findMany({ where: { Token: { some: { id: { in: Object.keys(assets).map(address => address.toLowerCase()) } } } } })
 
     if (!daosToFollow.length) {
@@ -35,10 +38,10 @@ export const userMutationResolvers: Resolvers['Mutation'] = {
     }
 
     return repositories.user.upsert({
-      select: { id: true, walletAddress: true, createdAt: true },
+      select: { id: true, walletAddress: true, ens: true, createdAt: true },
       where: { id: context.user.uid },
-      create: { id: context.user.uid, walletAddress: args.walletAddress, UserDaoFollow: { createMany: { data: daosToFollow.map(dao => ({ daoId: dao.id })) } } },
-      update: { walletAddress: args.walletAddress },
+      create: { id: context.user.uid, walletAddress: hexAddress, ens, UserDaoFollow: { createMany: { data: daosToFollow.map(dao => ({ daoId: dao.id })) } } },
+      update: { walletAddress: hexAddress, ens },
     })
   },
 }
