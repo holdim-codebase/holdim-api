@@ -2,7 +2,7 @@
   "ts-node": {
     "files": true
   },
-  "include": ["src/**/*", ".eslintrc.js", "seed.ts"],
+  "include": ["./**/*.ts", ".eslintrc.js"],
   "exclude": ["prisma/**/*", "scripts/**/*"],
   "compilerOptions": {
     "target": "ES2019",
@@ -13,7 +13,6 @@
     "esModuleInterop": true,
     "sourceMap": true,
     "outDir": "dist",
-    "rootDir": "src",
     "strict": true,
     "moduleResolution": "node",
     "useUnknownInCatchVariables": true,
