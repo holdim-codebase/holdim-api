@@ -3,6 +3,7 @@ import { Resolvers } from '../generated/graphql'
 import { repositories } from '../repositories'
 import { getWalletAssets } from '../repositories/user'
 import { processWalletAddress } from '../services/blockchain'
+import { filterAssetsByPrice } from '../services/zerion/utils'
 
 export const walletResolver: Resolvers['Wallet'] = {
   address: ({ walletAddress }) => walletAddress,
@@ -30,7 +31,7 @@ export const userQueryResolvers: Resolvers['Query'] = {
 export const userMutationResolvers: Resolvers['Mutation'] = {
   registerUser: async (parent, args, context) => {
     const { hexAddress, ens } = await processWalletAddress(args.walletAddress)
-    const assets = await getWalletAssets.load(hexAddress)
+    const assets = filterAssetsByPrice(await getWalletAssets.load(hexAddress))
     let daosToFollow = await repositories.dao.findMany({ where: { Token: { some: { id: { in: Object.keys(assets).map(address => address.toLowerCase()) } } } } })
 
     if (!daosToFollow.length) {
