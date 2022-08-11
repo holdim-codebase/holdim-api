@@ -19,14 +19,6 @@ export const proposalResolver: Resolvers['Proposal'] = {
 
 export const proposalQueryResolvers: Resolvers['Query'] = {
   proposals: async (parent, { onlyFollowedDaos, daoIds }, ctx) => {
-    await repositories.proposal.findMany({
-      orderBy: { startAt: 'desc' },
-      where: {
-        dao: {
-          id: { in: [] },
-        },
-      },
-    })
     return repositories.proposal.findMany({
       orderBy: { startAt: 'desc' },
       where: {
