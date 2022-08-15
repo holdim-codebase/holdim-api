@@ -21,6 +21,7 @@ export const config = {
   },
   connectors: {
     redis: {
+      host: process.env.REDIS_HOST ?? '127.0.0.1',
       password: process.env.REDIS_PASSWORD ?? 'local',
     },
   },

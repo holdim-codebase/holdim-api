@@ -2,8 +2,9 @@ import Redis from 'ioredis'
 import { config } from '../../config'
 
 export const redis = new Redis({
-  keepAlive: 1,
+  host: config.connectors.redis.host,
   password: config.connectors.redis.password,
+  keepAlive: 1,
 })
 
 /**
