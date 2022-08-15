@@ -15,5 +15,13 @@ export const config = {
       apiKey: requiredToBe(process.env.ZERION_API_KEY, 'string'),
       url: 'wss://api-v4.zerion.io/',
     },
+    snapshot: {
+      url: 'https://hub.snapshot.org/graphql',
+    },
+  },
+  connectors: {
+    redis: {
+      password: process.env.REDIS_PASSWORD ?? 'local',
+    },
   },
 }

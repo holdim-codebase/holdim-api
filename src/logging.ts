@@ -16,7 +16,7 @@ export const loggingPlugin: PluginDefinition = {
         logger.error({ message: 'GraphQL Request failed', request: requestContext.request, context: requestContext.context, errors: requestContext.errors })
       },
       async willSendResponse(requestContext) {
-        logger.info({ message: 'GrapphQL Response', request: requestContext.request, context: requestContext.context, response: requestContext.response })
+        logger.info({ message: 'GraphQL Response', request: requestContext.request, context: requestContext.context, response: requestContext.response })
       },
     }
   },

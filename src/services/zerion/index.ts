@@ -57,10 +57,10 @@ class ZerionService {
 
   /**
    *
-   * @param tokenIds
+   * @param tokenId
    * @returns If token is not found -> it's missing in response
    */
-  getTokenInfo = async (tokenIds: ReadonlyArray<Token['id']>): Promise<ZerionNamespaces.AssetsNamespace.AssetInfo[]> => {
+  getTokenInfo = async (tokenId: Token['id']): Promise<ZerionNamespaces.AssetsNamespace.AssetInfo> => {
     const socketNamespace = getSocket('assets')
     const response = await request(
       socketNamespace,
@@ -69,7 +69,7 @@ class ZerionService {
         {
           scope: ['info'],
           payload: {
-            asset_codes: tokenIds,
+            asset_codes: [tokenId],
           },
         },
       ]
@@ -77,7 +77,7 @@ class ZerionService {
 
     await socketNamespace.socket.disconnect()
 
-    return response.payload.info
+    return response.payload.info[0]
   }
 }
 

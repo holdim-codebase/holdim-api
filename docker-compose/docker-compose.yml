@@ -17,6 +17,14 @@ services:
       - .env
     ports:
       - 5432:5432
+  redis:
+    image: 'redis:6'
+    networks:
+      - webproxy
+    volumes:
+      - ./redis.conf:/usr/local/etc/redis/redis.conf:ro
+    ports:
+      - 6379:6379
 networks:
   webproxy:
     driver: bridge

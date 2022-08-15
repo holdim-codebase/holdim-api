@@ -1,3 +1,13 @@
+# Proposal poll types were taken from Snapshot GraphQL API
+type ProposalPoll {
+  scores: [Float]
+  choices: [String]!
+  symbol: String!
+  scores_total: Float
+  votes: Int
+  quorum: Float!
+}
+
 type Proposal {
   id: ID!
   snapshotId: ID!
@@ -13,4 +23,6 @@ type Proposal {
   author: String!
   snapshotLink: String!
   discussionLink: String
+
+  poll: ProposalPoll
 }
