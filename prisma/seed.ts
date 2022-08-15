@@ -113,7 +113,12 @@ The goal is to establish a DAO with working, trustless governance. This is not a
     snapshotId: 'uniswap',
     name: 'Uniswap',
     logo: 'ipfs://QmdNntEZMnen3QE9GfHG4heeqMJkFjxQ9BDof4m8xzV6UT',
-    overview: '',
+    overview: `- Uniswap is a decentralized protocol for exchanging Ethereum tokens. The protocol is designed to be simple and easy to use, and it doesn't require users to deposit their tokens into a centralized exchange. Instead, users can trade directly from their own wallets.
+
+- Uniswap is built on top of the Ethereum blockchain and uses smart contracts to facilitate token swaps. The protocol is completely decentralized and doesn't require any intermediaries.
+
+- The Uniswap Protocol is managed by a global community of **UNI token holders and delegates**.
+`,
     tokenOverview: `## Governs
 1. Uniswap governance
 
