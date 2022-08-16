@@ -3,6 +3,7 @@ import { config } from '../../config'
 
 export const redis = new Redis({
   host: config.connectors.redis.host,
+  port: config.connectors.redis.port,
   password: config.connectors.redis.password,
   keepAlive: 1,
 })
