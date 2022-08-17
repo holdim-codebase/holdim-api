@@ -49,6 +49,7 @@ model Proposal {
   author            String
   snapshotLink      String
   discussionLink    String?
+  issueNumber       Int? @unique
 
   createdAt DateTime @default(now())
   dao       Dao      @relation(fields: [daoId], references: [id], onDelete: Cascade)
