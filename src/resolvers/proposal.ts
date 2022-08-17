@@ -51,6 +51,7 @@ export const proposalQueryResolvers: Resolvers['Query'] = {
   proposals: async (parent, { onlyFollowedDaos, daoIds }, ctx) => {
     return repositories.proposal.findMany({
       orderBy: { startAt: 'desc' },
+      take: 10,
       where: {
         dao: omitBy({
             id: daoIds ? { in: daoIds.map(Number) } : undefined,

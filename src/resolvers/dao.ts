@@ -42,7 +42,7 @@ export const daoQueryResolver: Resolvers['Query'] = {
       whereQuery.where = { ...whereQuery.where, UserDaoFollow: { some: { userId: ctx.user.uid } } }
     }
 
-    return repositories.dao.findMany(whereQuery)
+    return repositories.dao.findMany({ take: 10, ...whereQuery })
   },
 }
 

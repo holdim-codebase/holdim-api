@@ -1,0 +1,17 @@
+interface PageInfo {
+  endCursor: String
+  hasNextPage: Boolean!
+}
+
+interface Connection {
+  totalCount: Int!
+  pageInfo: PageInfo!
+}
+
+type ProposalConnection implements Connection {
+  edges: [Proposal]!
+}
+
+type DAOConnection implements Connection {
+  edges: [DAO]!
+}

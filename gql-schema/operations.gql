@@ -1,7 +1,11 @@
 type Query {
   me: User!
-  proposals(daoIds: [ID!], onlyFollowedDaos: Boolean): [Proposal!]!
-  daos(ids: [ID!], onlyFollowed: Boolean): [DAO!]!
+
+  proposals(daoIds: [ID!], onlyFollowedDaos: Boolean): [Proposal!]! @deprecated(reason: "Lacks pagination. Use `proposalsV2`")
+  proposalsV2(daoIds: [ID!], onlyFollowedDaos: Boolean): [ProposalConnection!]!
+
+  daos(ids: [ID!], onlyFollowed: Boolean): [DAO!]! @deprecated(reason: "Lacks pagination. Use `daosV2`")
+  daosV2(ids: [ID!], onlyFollowed: Boolean): [DAOConnection!]!
 }
 
 type Mutation {
