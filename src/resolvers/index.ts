@@ -1,16 +1,16 @@
 import { Resolvers } from '../generated/graphql'
 import { DaoResolver, daoQueryResolver, daoPersonalizedDataResolver, daoMutationResolver } from './dao'
 import { PollResolver, proposalQueryResolvers, proposalResolver } from './proposal'
-import { tokenPersonlizedDataResolver, tokenResoler } from './token'
-import { userMutationResolvers, userQueryResolvers, userResoler, walletResolver } from './user'
+import { tokenPersonalizedDataResolver, tokenResolver } from './token'
+import { userMutationResolvers, userQueryResolvers, userResolver, walletResolver } from './user'
 
 export const resolvers: Resolvers = {
-  User: userResoler,
+  User: userResolver,
   Proposal: proposalResolver,
   DAO: DaoResolver,
   DaoPersonalizedData: daoPersonalizedDataResolver,
-  Token: tokenResoler,
-  TokenPersonalizedData: tokenPersonlizedDataResolver,
+  Token: tokenResolver,
+  TokenPersonalizedData: tokenPersonalizedDataResolver,
   Wallet: walletResolver,
   ProposalPoll: PollResolver,
 

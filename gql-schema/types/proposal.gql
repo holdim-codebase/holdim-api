@@ -8,7 +8,7 @@ type ProposalPoll {
   quorum: Float!
 }
 
-type Proposal {
+type Proposal implements Node {
   id: ID!
   snapshotId: ID!
   title: String!

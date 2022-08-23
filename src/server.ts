@@ -8,7 +8,7 @@ import { DecodedIdToken } from 'firebase-admin/lib/auth/token-verifier'
 import crypto from 'crypto'
 
 export const server = new ApolloServer({
-  typeDefs: [readFileSync('./gql-schema/operations.gql').toString('utf-8'), ...readdirSync('./gql-schema/types').map(typePath => readFileSync(path.join('./gql-schema/types', typePath)).toString('utf-8'))],
+  typeDefs: [readFileSync('./gql-schema/pagination.gql').toString('utf-8'), readFileSync('./gql-schema/operations.gql').toString('utf-8'), ...readdirSync('./gql-schema/types').map(typePath => readFileSync(path.join('./gql-schema/types', typePath)).toString('utf-8'))],
   resolvers,
   logger,
   context: async ({ req }) => {

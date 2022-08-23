@@ -14,7 +14,7 @@ export const walletResolver: Resolvers['Wallet'] = {
   },
 }
 
-export const userResoler: Resolvers['User'] = {
+export const userResolver: Resolvers['User'] = {
   id: ({ id }) => id,
   walletAddress: ({ walletAddress }) => walletAddress,
   wallet: user => user,

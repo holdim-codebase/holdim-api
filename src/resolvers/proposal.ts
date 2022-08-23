@@ -1,8 +1,9 @@
 import { Dao } from '@prisma/client'
 import { isUndefined, omitBy } from 'lodash'
-import { Resolvers } from '../generated/graphql'
+import { Resolvers, ResolversTypes } from '../generated/graphql'
 import { repositories } from '../repositories'
 import { snapshotVotesDataloader } from '../services/snapshot'
+import { paginatedResult } from '../utils/pagination'
 
 export const PollResolver: Resolvers['ProposalPoll'] = {
   scores: async ({ snapshotId }) => {
@@ -59,5 +60,19 @@ export const proposalQueryResolvers: Resolvers['Query'] = {
           }, isUndefined),
       },
     })
+  },
+  proposalsV2: async (parent, { onlyFollowedDaos, daoIds, first, after }, ctx) => {
+    return paginatedResult(
+      repositories.proposal,
+      {
+        dao: omitBy({
+            id: daoIds ? { in: daoIds.map(Number) } : undefined,
+            UserDaoFollow: onlyFollowedDaos ? { some: { userId: ctx.user.uid } } : undefined,
+          }, isUndefined),
+      },
+      { startAt: 'desc' },
+      first ?? undefined,
+      after ?? undefined
+    ) as ResolversTypes['ProposalConnection']
   },
 }

@@ -2,7 +2,7 @@ type DaoPersonalizedData {
   followed: Boolean!
 }
 
-type DAO {
+type DAO implements Node {
   id: ID!
   snapshotId: ID!
   name: String!

@@ -4,7 +4,7 @@ import { getTokenInfo } from '../repositories/token'
 import { getWalletAssets } from '../repositories/user'
 import { formatTokenWithDecimals } from '../utils'
 
-export const tokenPersonlizedDataResolver: Resolvers['TokenPersonalizedData'] = {
+export const tokenPersonalizedDataResolver: Resolvers['TokenPersonalizedData'] = {
   quantity: async ({ id }, args, ctx) => {
     const token = await getTokenInfo.load(id)
     const user = await repositories.user.findUnique({ where: { id: ctx.user.uid } })
@@ -14,7 +14,7 @@ export const tokenPersonlizedDataResolver: Resolvers['TokenPersonalizedData'] = 
   },
 }
 
-export const tokenResoler: Resolvers['Token'] = {
+export const tokenResolver: Resolvers['Token'] = {
   id: ({ id }) => id,
   name: ({ name }) => name,
   main: async ({ id }) => (await (repositories.token.findUnique({ where: { id } })))?.main ?? null,

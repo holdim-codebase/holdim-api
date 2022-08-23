@@ -1,10 +1,11 @@
 import { ApolloError } from 'apollo-server'
-import { POSGTRES_ERROR_CODES } from '../errors/postgres'
-import { Resolvers } from '../generated/graphql'
+import { POSTGRES_ERROR_CODES } from '../errors/postgres'
+import { Resolvers, ResolversTypes } from '../generated/graphql'
 import { logger } from '../logging'
 import { repositories } from '../repositories'
 import { getTokenInfo } from '../repositories/token'
 import { ZerionNamespaces } from '../services/zerion/types'
+import { paginatedResult } from '../utils/pagination'
 
 export const daoPersonalizedDataResolver: Resolvers['DaoPersonalizedData'] = {
   followed: ({ id: daoId }, args, ctx) => repositories.userDaoFollow.findUnique({
@@ -44,6 +45,22 @@ export const daoQueryResolver: Resolvers['Query'] = {
 
     return repositories.dao.findMany({ take: 10, ...whereQuery })
   },
+  daosV2: async (parent, { first, after, ids, onlyFollowed }, ctx) => {
+    const whereQuery = {
+      id: ids ? { in: ids.map(Number) } : undefined,
+      UserDaoFollow: onlyFollowed
+        ? { some: { userId: ctx.user.uid } }
+        : undefined,
+    }
+
+    return paginatedResult(
+      repositories.dao,
+      whereQuery,
+      { id: 'desc' },
+      first ?? undefined,
+      after ?? undefined
+    ) as ResolversTypes['DAOConnection']
+  },
 }
 
 export const daoMutationResolver: Resolvers['Mutation'] = {
@@ -63,7 +80,7 @@ export const daoMutationResolver: Resolvers['Mutation'] = {
         where: { daoId_userId: { daoId: Number(daoId), userId: ctx.user.uid } },
       })
     } catch (error) {
-      if (typeof error === 'object' && (error as any)?.code !== POSGTRES_ERROR_CODES.DELETE_NOT_FOUND) {
+      if (typeof error === 'object' && (error as any)?.code !== POSTGRES_ERROR_CODES.DELETE_NOT_FOUND) {
         logger.error(error)
         throw error as Error
       }

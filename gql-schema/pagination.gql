@@ -1,17 +1,43 @@
-interface PageInfo {
+# Reference https://relay.dev/graphql/connections.htm
+
+interface Node {
+  id: ID!
+}
+
+type PageInfo {
   endCursor: String
   hasNextPage: Boolean!
+}
+
+interface Edge {
+  cursor: String!
+  node: Node!
 }
 
 interface Connection {
   totalCount: Int!
   pageInfo: PageInfo!
+  edges: [Edge]!
+}
+
+type ProposalEdge implements Edge {
+  node: Proposal!
+  cursor: String!
 }
 
 type ProposalConnection implements Connection {
-  edges: [Proposal]!
+  totalCount: Int!
+  pageInfo: PageInfo!
+  edges: [ProposalEdge]!
+}
+
+type DAOEdge implements Edge {
+  node: DAO!
+  cursor: String!
 }
 
 type DAOConnection implements Connection {
-  edges: [DAO]!
+  totalCount: Int!
+  pageInfo: PageInfo!
+  edges: [DAOEdge]!
 }
