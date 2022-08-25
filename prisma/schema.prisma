@@ -1,6 +1,7 @@
 // This is your Prisma schema file,
 // learn more about it in the docs: https://pris.ly/d/prisma-schema
 
+
 generator client {
   provider = "prisma-client-js"
 }
@@ -11,14 +12,22 @@ datasource db {
 }
 
 model User {
-  id            String @id @db.VarChar(255)
-  walletAddress String @db.VarChar(255)
-  ens String? @db.VarChar(255)
+  id String @id @db.VarChar(255)
 
   createdAt     DateTime        @default(now())
   proposals     Proposal[]
   Daos          Dao[]
   UserDaoFollow UserDaoFollow[]
+  Wallet        Wallet[]
+}
+
+model Wallet {
+  id      Int     @id @default(autoincrement())
+  userId  String
+  address String
+  ens     String? @db.VarChar(255)
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
 }
 
 model Dao {
@@ -49,7 +58,7 @@ model Proposal {
   author            String
   snapshotLink      String
   discussionLink    String?
-  issueNumber       Int? @unique
+  issueNumber       Int?     @unique
 
   createdAt DateTime @default(now())
   dao       Dao      @relation(fields: [daoId], references: [id], onDelete: Cascade)
