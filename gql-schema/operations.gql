@@ -1,8 +1,8 @@
 type Query {
   me: User!
 
-  proposals(daoIds: [ID!], onlyFollowedDaos: Boolean): [Proposal!]! @deprecated(reason: "Lacks pagination. Use `proposalsV2`")
-  proposalsV2(first: Int, after: String, daoIds: [ID!], onlyFollowedDaos: Boolean): ProposalConnection!
+  proposals(daoIds: [ID!], onlyFollowedDaos: Boolean, ids: [ID!]): [Proposal!]! @deprecated(reason: "Lacks pagination. Use `proposalsV2`")
+  proposalsV2(first: Int, after: String, daoIds: [ID!], onlyFollowedDaos: Boolean, ids: [ID!]): ProposalConnection!
 
   daos(ids: [ID!], onlyFollowed: Boolean): [DAO!]! @deprecated(reason: "Lacks pagination. Use `daosV2`")
   daosV2(first: Int, after: String, ids: [ID!], onlyFollowed: Boolean): DAOConnection!

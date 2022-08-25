@@ -49,11 +49,12 @@ export const proposalResolver: Resolvers['Proposal'] = {
 }
 
 export const proposalQueryResolvers: Resolvers['Query'] = {
-  proposals: async (parent, { onlyFollowedDaos, daoIds }, ctx) => {
+  proposals: async (parent, { onlyFollowedDaos, daoIds, ids }, ctx) => {
     return repositories.proposal.findMany({
       orderBy: { startAt: 'desc' },
       take: 10,
       where: {
+        id: ids ? { in: ids.map(Number) } : undefined,
         dao: omitBy({
             id: daoIds ? { in: daoIds.map(Number) } : undefined,
             UserDaoFollow: onlyFollowedDaos ? { some: { userId: ctx.user.uid } } : undefined,
@@ -61,10 +62,11 @@ export const proposalQueryResolvers: Resolvers['Query'] = {
       },
     })
   },
-  proposalsV2: async (parent, { onlyFollowedDaos, daoIds, first, after }, ctx) => {
+  proposalsV2: async (parent, { onlyFollowedDaos, daoIds, first, after, ids }, ctx) => {
     return paginatedResult(
       repositories.proposal,
       {
+        id: ids ? { in: ids.map(Number) } : undefined,
         dao: omitBy({
             id: daoIds ? { in: daoIds.map(Number) } : undefined,
             UserDaoFollow: onlyFollowedDaos ? { some: { userId: ctx.user.uid } } : undefined,
