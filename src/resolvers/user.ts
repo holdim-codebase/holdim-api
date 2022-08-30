@@ -1,4 +1,4 @@
-import { User } from '@prisma/client'
+import { User, Wallet } from '@prisma/client'
 import { Resolvers } from '../generated/graphql'
 import { repositories } from '../repositories'
 import { getWalletAssets } from '../repositories/user'
@@ -6,18 +6,20 @@ import { processWalletAddress } from '../services/blockchain'
 import { filterAssetsByPrice } from '../services/zerion/utils'
 
 export const walletResolver: Resolvers['Wallet'] = {
-  address: ({ walletAddress }) => walletAddress,
+  id: ({ id }) => id.toString(),
+  address: ({ address }) => address,
   ens: ({ ens }) => ens,
-  tokens: async ({ walletAddress }) => {
-    const assets = await getWalletAssets.load(walletAddress)
+  tokens: async ({ address }) => {
+    const assets = await getWalletAssets.load(address)
     return Object.values(assets).map(({ asset }) => asset)
   },
 }
 
 export const userResolver: Resolvers['User'] = {
   id: ({ id }) => id,
-  walletAddress: ({ walletAddress }) => walletAddress,
-  wallet: user => user,
+  walletAddress: async (user) => (await repositories.wallet.findFirst({ where: { userId: user.id } }))?.address ?? '',
+  wallet: user => repositories.wallet.findFirst({ where: { userId: user.id } }) as Promise<Wallet>,
+  wallets: user => repositories.wallet.findMany({ where: { userId: user.id } }),
   followedDaos: ({ id: userId }) => repositories.dao.findMany({ where: { UserDaoFollow: { some: { userId } } } }),
   avatarUrl: () => 'https://storage.googleapis.com/holdim-items/images/Frame%2043%20(1).png',
 }
@@ -38,11 +40,12 @@ export const userMutationResolvers: Resolvers['Mutation'] = {
       daosToFollow = await repositories.dao.findMany()
     }
 
-    return repositories.user.upsert({
-      select: { id: true, walletAddress: true, ens: true, createdAt: true },
-      where: { id: context.user.uid },
-      create: { id: context.user.uid, walletAddress: hexAddress, ens, UserDaoFollow: { createMany: { data: daosToFollow.map(dao => ({ daoId: dao.id })) } } },
-      update: { walletAddress: hexAddress, ens },
+    return repositories.user.create({
+      data: {
+        id: context.user.uid,
+        Wallet: { create: { address: hexAddress, ens } },
+        UserDaoFollow: { createMany: { data: daosToFollow.map(dao => ({ daoId: dao.id })) } },
+      },
     })
   },
 }

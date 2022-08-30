@@ -1,4 +1,4 @@
-import { User } from '@prisma/client'
+import { Wallet } from '@prisma/client'
 import DataLoader from 'dataloader'
 import { logger } from '../logging'
 import { zerionService } from '../services/zerion'
@@ -6,7 +6,7 @@ import { ZerionNamespaces } from '../services/zerion/types'
 import { redisWrapper } from './redis'
 import { DATALOADER_PARAMS } from './redis/keys'
 
-export const getWalletAssets = new DataLoader<User['walletAddress'], ZerionNamespaces.AddressNamespace.PortfolioByAddressResponse['payload']['assets']>(
+export const getWalletAssets = new DataLoader<Wallet['address'], ZerionNamespaces.AddressNamespace.PortfolioByAddressResponse['payload']['assets']>(
   walletAddresses => {
     return Promise.all(walletAddresses.map(async walletAddress => {
       try {

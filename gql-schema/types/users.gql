@@ -1,4 +1,5 @@
 type Wallet {
+  id: ID!
   address: String!
   ens: String
   tokens: [Token!]!
@@ -7,7 +8,8 @@ type Wallet {
 type User {
   id: ID!
   walletAddress: String! @deprecated(reason: "wallet object has required address parameter")
-  wallet: Wallet!
+  wallet: Wallet! @deprecated(reason: "user has multiple wallets, this parameter returns random wallet")
+  wallets: [Wallet!]!
   followedDaos: [DAO!]!
   avatarUrl: String!
 }

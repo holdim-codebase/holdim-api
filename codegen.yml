@@ -12,7 +12,7 @@ config:
     TokenPersonalizedData: ../services/zerion/types#ZerionNamespaces#Asset
     Token: ../services/zerion/types#ZerionNamespaces#Asset
     User: .prisma/client#User as UserModel
-    Wallet: .prisma/client#User as UserModel
+    Wallet: .prisma/client#Wallet as WalletModel
     Proposal: .prisma/client#Proposal as ProposalModel
     ProposalPoll: .prisma/client#Proposal as ProposalModel
     DAO: .prisma/client#Dao as DAOModel
