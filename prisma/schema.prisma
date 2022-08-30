@@ -14,11 +14,10 @@ datasource db {
 model User {
   id String @id @db.VarChar(255)
 
-  createdAt     DateTime        @default(now())
-  proposals     Proposal[]
-  Daos          Dao[]
-  UserDaoFollow UserDaoFollow[]
-  Wallet        Wallet[]
+  createdAt DateTime   @default(now())
+  proposals Proposal[]
+  Daos      Dao[]
+  Wallet    Wallet[]
 }
 
 model Wallet {
@@ -27,7 +26,8 @@ model Wallet {
   address String
   ens     String? @db.VarChar(255)
 
-  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+  user            User              @relation(fields: [userId], references: [id], onDelete: Cascade)
+  WalletDaoFollow WalletDaoFollow[]
 }
 
 model Dao {
@@ -38,11 +38,11 @@ model Dao {
   overview      String
   tokenOverview String
 
-  createdAt     DateTime        @default(now())
-  Proposal      Proposal[]
-  Token         Token[]
-  users         User[]
-  UserDaoFollow UserDaoFollow[]
+  createdAt       DateTime          @default(now())
+  Proposal        Proposal[]
+  Token           Token[]
+  users           User[]
+  WalletDaoFollow WalletDaoFollow[]
 }
 
 model Proposal {
@@ -76,12 +76,12 @@ model Token {
   createdAt DateTime @default(now())
 }
 
-model UserDaoFollow {
-  dao    Dao    @relation(fields: [daoId], references: [id], onDelete: Cascade)
-  daoId  Int
-  user   User   @relation(fields: [userId], references: [id], onDelete: Cascade)
-  userId String
+model WalletDaoFollow {
+  dao      Dao    @relation(fields: [daoId], references: [id], onDelete: Cascade)
+  daoId    Int
+  wallet   Wallet @relation(fields: [walletId], references: [id], onDelete: Cascade)
+  walletId Int
 
   createdAt DateTime @default(now())
-  @@id([daoId, userId])
+  @@id([daoId, walletId])
 }
