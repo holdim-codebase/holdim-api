@@ -19,10 +19,10 @@ export const server = new ApolloServer({
     try {
       user = await getFirebaseUser((req.headers.authorization ?? '').split('Bearer ')[1])
       if (typeof req.headers['wallet-id'] === 'string') {
-        wallet = await repositories.wallet.findFirst({ where: { userId: user.uid, id: Number(typeof req.headers['wallet-id']) } }) ?? undefined
+        wallet = await repositories.wallet.findFirst({ where: { userId: user.uid, id: Number(req.headers['wallet-id']) } }) ?? undefined
       }
     } catch (error) {
-      logger.debug({ error }, 'Auth failed')
+      logger.debug(error, 'Auth failed')
       throw new AuthenticationError('Failed to authenticate')
     }
 

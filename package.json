@@ -18,7 +18,7 @@
     "build:gql": "graphql-codegen --config codegen.yml",
     "script:auth": "ts-node ./scripts/getAuthToken",
     "start:dev": "yarn run build && GOOGLE_APPLICATION_CREDENTIALS=`pwd`/local_secrets/fb_service_key.json yarn run start",
-    "db:seed": "npx prisma db sexport eed",
+    "db:seed": "npx prisma db seed",
     "db:seed:force": "SEED_FORCE_UPSERT=true npx prisma db seed"
   },
   "dependencies": {
