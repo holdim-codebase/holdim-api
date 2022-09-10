@@ -2,7 +2,8 @@ import { Resolvers } from '../generated/graphql'
 import { DaoResolver, daoQueryResolver, daoPersonalizedDataResolver, daoMutationResolver } from './dao'
 import { PollResolver, proposalQueryResolvers, proposalResolver } from './proposal'
 import { tokenPersonalizedDataResolver, tokenResolver } from './token'
-import { userMutationResolvers, userQueryResolvers, userResolver, walletResolver } from './user'
+import { userMutationResolvers, userQueryResolvers, userResolver } from './user'
+import { walletMutationResolver, walletResolver } from './wallet'
 
 export const resolvers: Resolvers = {
   User: userResolver,
@@ -23,5 +24,6 @@ export const resolvers: Resolvers = {
   Mutation: {
     ...userMutationResolvers,
     ...daoMutationResolver,
+    ...walletMutationResolver,
   },
 }

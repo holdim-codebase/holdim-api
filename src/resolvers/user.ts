@@ -2,19 +2,7 @@ import { User, Wallet } from '@prisma/client'
 import { ApolloError } from 'apollo-server'
 import { Resolvers } from '../generated/graphql'
 import { repositories } from '../repositories'
-import { getWalletAssets } from '../repositories/user'
-import { processWalletAddress } from '../services/blockchain'
-import { filterAssetsByPrice } from '../services/zerion/utils'
-
-export const walletResolver: Resolvers['Wallet'] = {
-  id: ({ id }) => id.toString(),
-  address: ({ address }) => address,
-  ens: ({ ens }) => ens,
-  tokens: async ({ address }) => {
-    const assets = await getWalletAssets.load(address)
-    return Object.values(assets).map(({ asset }) => asset)
-  },
-}
+import { processNewWallet } from '../utils/wallet'
 
 export const userResolver: Resolvers['User'] = {
   id: ({ id }) => id,
@@ -38,13 +26,7 @@ export const userQueryResolvers: Resolvers['Query'] = {
 
 export const userMutationResolvers: Resolvers['Mutation'] = {
   registerUser: async (parent, args, context) => {
-    const { hexAddress, ens } = await processWalletAddress(args.walletAddress)
-    const assets = filterAssetsByPrice(await getWalletAssets.load(hexAddress))
-    let daosToFollow = await repositories.dao.findMany({ where: { Token: { some: { id: { in: Object.keys(assets).map(address => address.toLowerCase()) } } } } })
-
-    if (!daosToFollow.length) {
-      daosToFollow = await repositories.dao.findMany()
-    }
+    const { hexAddress, ens, daosToFollow } = await processNewWallet(args.walletAddress)
 
     return repositories.user.create({
       data: {

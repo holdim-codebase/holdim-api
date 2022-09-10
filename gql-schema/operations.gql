@@ -13,4 +13,7 @@ type Mutation {
 
   followDao(daoId: ID!): DAO!
   unfollowDao(daoId: ID!): DAO!
+
+  addWallet(walletAddress: ID!): Wallet!
+  deleteWallet: Wallet!
 }
