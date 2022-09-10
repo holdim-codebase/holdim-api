@@ -52,10 +52,14 @@ export const daoQueryResolver: Resolvers['Query'] = {
     return repositories.dao.findMany({ take: 10, ...whereQuery })
   },
   daosV2: async (parent, { first, after, ids, onlyFollowed }, ctx) => {
+    if (!ctx.wallet) {
+      throw new ApolloError('Missing wallet')
+    }
+
     const whereQuery = {
       id: ids ? { in: ids.map(Number) } : undefined,
-      UserDaoFollow: onlyFollowed
-        ? { some: { userId: ctx.user.uid } }
+      WalletDaoFollow: onlyFollowed
+        ? { some: { walletId: ctx.wallet.id } }
         : undefined,
     }
 

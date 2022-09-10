@@ -1,4 +1,5 @@
 import { Dao } from '@prisma/client'
+import { ApolloError } from 'apollo-server'
 import { isUndefined, omitBy } from 'lodash'
 import { Resolvers, ResolversTypes } from '../generated/graphql'
 import { repositories } from '../repositories'
@@ -63,13 +64,16 @@ export const proposalQueryResolvers: Resolvers['Query'] = {
     })
   },
   proposalsV2: async (parent, { onlyFollowedDaos, daoIds, first, after, ids }, ctx) => {
+    if (!ctx.wallet?.id) {
+      throw new ApolloError('Missing wallet')
+    }
     return paginatedResult(
       repositories.proposal,
       {
         id: ids ? { in: ids.map(Number) } : undefined,
         dao: omitBy({
             id: daoIds ? { in: daoIds.map(Number) } : undefined,
-            UserDaoFollow: onlyFollowedDaos ? { some: { userId: ctx.user.uid } } : undefined,
+            WalletDaoFollow: onlyFollowedDaos ? { some: { walletId: ctx.wallet.id } } : undefined,
           }, isUndefined),
       },
       { startAt: 'desc' },
