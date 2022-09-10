@@ -1,4 +1,5 @@
 import { User, Wallet } from '@prisma/client'
+import { ApolloError } from 'apollo-server'
 import { Resolvers } from '../generated/graphql'
 import { repositories } from '../repositories'
 import { getWalletAssets } from '../repositories/user'
@@ -20,7 +21,12 @@ export const userResolver: Resolvers['User'] = {
   walletAddress: async (user) => (await repositories.wallet.findFirst({ where: { userId: user.id } }))?.address ?? '',
   wallet: user => repositories.wallet.findFirst({ where: { userId: user.id } }) as Promise<Wallet>,
   wallets: user => repositories.wallet.findMany({ where: { userId: user.id } }),
-  followedDaos: ({ id: userId }) => repositories.dao.findMany({ where: { UserDaoFollow: { some: { userId } } } }),
+  followedDaos: ({ id: userId }, args, ctx) => {
+    if (!ctx.wallet) {
+      throw new ApolloError('Missing wallet')
+    }
+    return repositories.dao.findMany({ where: { WalletDaoFollow: { some: { walletId: ctx.wallet.id } } } })
+  },
   avatarUrl: () => 'https://storage.googleapis.com/holdim-items/images/Frame%2043%20(1).png',
 }
 
@@ -43,8 +49,13 @@ export const userMutationResolvers: Resolvers['Mutation'] = {
     return repositories.user.create({
       data: {
         id: context.user.uid,
-        Wallet: { create: { address: hexAddress, ens } },
-        UserDaoFollow: { createMany: { data: daosToFollow.map(dao => ({ daoId: dao.id })) } },
+        Wallet: {
+          create: {
+            address: hexAddress,
+            ens,
+            WalletDaoFollow: { createMany: { data: daosToFollow.map(dao => ({ daoId: dao.id })) } },
+          },
+        },
       },
     })
   },

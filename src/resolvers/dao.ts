@@ -8,9 +8,12 @@ import { ZerionNamespaces } from '../services/zerion/types'
 import { paginatedResult } from '../utils/pagination'
 
 export const daoPersonalizedDataResolver: Resolvers['DaoPersonalizedData'] = {
-  followed: ({ id: daoId }, args, ctx) => repositories.userDaoFollow.findUnique({
-    where: { daoId_userId: { daoId: Number(daoId), userId: ctx.user.uid } },
-  }).then(Boolean),
+  followed: ({ id: daoId }, args, ctx) => {
+    if (!ctx.wallet) { throw new ApolloError('Missing wallet id') }
+    return repositories.walletDaoFollow.findUnique({
+      where: { daoId_walletId: { daoId: Number(daoId), walletId: ctx.wallet.id } },
+    }).then(Boolean)
+  },
 }
 
 export const DaoResolver: Resolvers['DAO'] = {
@@ -40,7 +43,10 @@ export const daoQueryResolver: Resolvers['Query'] = {
     const whereQuery: Parameters<typeof repositories['dao']['findMany']>[0] = ids ? { where: { id: { in: ids.map(id => parseInt(id)) } } } : { orderBy: { name: 'asc' } }
 
     if (onlyFollowed) {
-      whereQuery.where = { ...whereQuery.where, UserDaoFollow: { some: { userId: ctx.user.uid } } }
+      if (!ctx.wallet) {
+        throw new ApolloError('Cannot request only followed daos without wallet')
+      }
+      whereQuery.where = { ...whereQuery.where, WalletDaoFollow: { some: { walletId: ctx.wallet.id } } }
     }
 
     return repositories.dao.findMany({ take: 10, ...whereQuery })
@@ -65,19 +71,25 @@ export const daoQueryResolver: Resolvers['Query'] = {
 
 export const daoMutationResolver: Resolvers['Mutation'] = {
   followDao: async (parent, { daoId }, ctx) => {
-    await repositories.userDaoFollow.upsert({
+    if (!ctx.wallet) {
+      throw new ApolloError('Missing user wallet')
+    }
+    await repositories.walletDaoFollow.upsert({
       select: { daoId: true },
-      where: { daoId_userId: { daoId: Number(daoId), userId: ctx.user.uid } },
-      create: { daoId: Number(daoId), userId: ctx.user.uid },
+      where: { daoId_walletId: { daoId: Number(daoId), walletId: ctx.wallet.id } },
+      create: { daoId: Number(daoId), walletId: ctx.wallet.id },
       update: {},
     })
 
     return (await repositories.dao.findUnique({ where: { id: Number(daoId) } }))!
   },
   unfollowDao: async (parent, { daoId }, ctx) => {
+    if (!ctx.wallet) {
+      throw new ApolloError('Missing user wallet')
+    }
     try {
-      await repositories.userDaoFollow.delete({
-        where: { daoId_userId: { daoId: Number(daoId), userId: ctx.user.uid } },
+      await repositories.walletDaoFollow.delete({
+        where: { daoId_walletId: { daoId: Number(daoId), walletId: ctx.wallet.id } },
       })
     } catch (error) {
       if (typeof error === 'object' && (error as any)?.code !== POSTGRES_ERROR_CODES.DELETE_NOT_FOUND) {
