@@ -28,6 +28,8 @@ model Wallet {
 
   user            User              @relation(fields: [userId], references: [id], onDelete: Cascade)
   WalletDaoFollow WalletDaoFollow[]
+
+  @@unique([userId, address])
 }
 
 model Dao {

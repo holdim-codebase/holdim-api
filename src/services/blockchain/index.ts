@@ -17,10 +17,10 @@ export const processWalletAddress = async (address: string): Promise<WalletAddre
     case address.endsWith('.eth'): {
       const hexAddress = await ethereumProvider.resolveName(address)
       if (!hexAddress) { throw new Error('Unknown ENS address') }
-      return { hexAddress, ens: address }
+      return { hexAddress: hexAddress.toLowerCase(), ens: address }
     }
     case Boolean(ethers.utils.isAddress(address)):
-      return { hexAddress: address }
+      return { hexAddress: address.toLowerCase() }
     default:
       throw new Error('Unknown address type')
   }
