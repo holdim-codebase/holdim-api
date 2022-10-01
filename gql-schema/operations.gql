@@ -5,7 +5,7 @@ type Query {
   proposalsV2(first: Int, after: String, daoIds: [ID!], onlyFollowedDaos: Boolean, ids: [ID!]): ProposalConnection!
 
   daos(ids: [ID!], onlyFollowed: Boolean): [DAO!]! @deprecated(reason: "Lacks pagination. Use `daosV2`")
-  daosV2(first: Int, after: String, ids: [ID!], onlyFollowed: Boolean): DAOConnection!
+  daosV2(first: Int, after: String, ids: [ID!], onlyFollowed: Boolean, search: String): DAOConnection!
 }
 
 type Mutation {

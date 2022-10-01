@@ -51,22 +51,26 @@ export const daoQueryResolver: Resolvers['Query'] = {
 
     return repositories.dao.findMany({ take: 10, ...whereQuery })
   },
-  daosV2: async (parent, { first, after, ids, onlyFollowed }, ctx) => {
+  daosV2: async (parent, { first, after, ids, onlyFollowed, search }, ctx) => {
     if (!ctx.wallet) {
       throw new ApolloError('Missing wallet')
     }
 
-    const whereQuery = {
-      id: ids ? { in: ids.map(Number) } : undefined,
-      WalletDaoFollow: onlyFollowed
-        ? { some: { walletId: ctx.wallet.id } }
-        : undefined,
+    const query: Parameters<typeof repositories['dao']['findMany']>[0] = {
+      where: {
+        name: { contains: search ?? undefined, mode: 'insensitive' },
+        id: ids ? { in: ids.map(Number) } : undefined,
+        WalletDaoFollow: onlyFollowed
+          ? { some: { walletId: ctx.wallet.id } }
+          : undefined,
+      },
+      orderBy: { id: 'desc' },
     }
 
     return paginatedResult(
       repositories.dao,
-      whereQuery,
-      { id: 'desc' },
+      query.where!,
+      query.orderBy!,
       first ?? undefined,
       after ?? undefined
     ) as ResolversTypes['DAOConnection']
