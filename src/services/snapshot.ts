@@ -42,7 +42,7 @@ const getProposalVotes = async (proposalSnapshotId: Proposal['snapshotId']): Pro
   return response.data.data.proposals[0]
 }
 
-export const snapshotVotesDataloader = new DataLoader<Proposal['snapshotId'], ProposalVotes>(proposalSnapshotIds => {
+export const snapshotVotesDataloader = new DataLoader<Proposal['snapshotId'], ProposalVotes|undefined>(proposalSnapshotIds => {
   return Promise.all(proposalSnapshotIds.map(async proposalSnapshotId => {
     try {
       return (await redisWrapper(DATALOADER_PARAMS.proposalVotes.keyGen(proposalSnapshotId), getProposalVotes.bind(null, proposalSnapshotId), DATALOADER_PARAMS.proposalVotes.ttl))

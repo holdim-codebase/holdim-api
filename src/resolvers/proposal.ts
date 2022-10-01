@@ -9,27 +9,27 @@ import { paginatedResult } from '../utils/pagination'
 export const PollResolver: Resolvers['ProposalPoll'] = {
   scores: async ({ snapshotId }) => {
     const proposalVotes = await snapshotVotesDataloader.load(snapshotId)
-    return proposalVotes.scores
+    return proposalVotes?.scores ?? null
   },
   choices: async ({ snapshotId }) => {
     const proposalVotes = await snapshotVotesDataloader.load(snapshotId)
-    return proposalVotes.choices
+    return proposalVotes?.choices ?? []
   },
   symbol: async ({ snapshotId }) => {
     const proposalVotes = await snapshotVotesDataloader.load(snapshotId)
-    return proposalVotes.symbol
+    return proposalVotes?.symbol ?? 'unknown'
   },
   scores_total: async ({ snapshotId }) => {
     const proposalVotes = await snapshotVotesDataloader.load(snapshotId)
-    return proposalVotes.scores_total
+    return proposalVotes?.scores_total ?? null
   },
   votes: async ({ snapshotId }) => {
     const proposalVotes = await snapshotVotesDataloader.load(snapshotId)
-    return proposalVotes.votes
+    return proposalVotes?.votes ?? null
   },
   quorum: async ({ snapshotId }) => {
     const proposalVotes = await snapshotVotesDataloader.load(snapshotId)
-    return proposalVotes.quorum
+    return proposalVotes?.quorum ?? 0
   },
 }
 
@@ -75,8 +75,9 @@ export const proposalQueryResolvers: Resolvers['Query'] = {
             id: daoIds ? { in: daoIds.map(Number) } : undefined,
             WalletDaoFollow: onlyFollowedDaos ? { some: { walletId: ctx.wallet.id } } : undefined,
           }, isUndefined),
+        issueNumber: { not: null },
       },
-      { startAt: 'desc' },
+      { issueNumber: 'desc' },
       first ?? undefined,
       after ?? undefined
     ) as ResolversTypes['ProposalConnection']
