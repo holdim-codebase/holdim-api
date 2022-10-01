@@ -90,7 +90,7 @@ The community votes on major structural changes and use of the devfund wallet, w
 Any use of the devfund wallet requires approval from the Multisig team, which is made up of trusted members of the DeFi & Ethereum ecosystem. The Ops Multisig team must also approve any changes within their purview, such as rebalancing and administration of farming pools and use of the growth fund.
 
 The goal is to establish a DAO with working, trustless governance. This is not an easy task, and all are welcome to discuss how the future DAO should work on the forums and in the #governance channel of the Discord server.`,
-    tokenOverview: '',
+    tokenOverview: '# SUSHI\n\nSUSHI is the governance token of the Sushi protocol. With SUSHI, you can vote on proposals to improve the protocol. SUSHI gives you a say in the future of the protocol and helps to keep it decentralized.\n\nTo be able to vote on governance proposals of Sushi, you need to have a SUSHIPOWAH.\n\n## SUSHIPOWAH\n\nSUSHIPOWAH is voting metric, and is decided as follows:\n\nEach $SUSHI in the **SUSHI-ETH** pool is worth **2 SUSHIPOWAH**\n\nEach $SUSHI held via **xSUSHI** tokens is worth **1 SUSHIPOWAH**\n\nxSUSHI:\n\nFor every swap on the exchange on every chain, 0.045% of the swap fees are distributed as SUSHI proportional to your share of the SushiBar and 0.005% is distributed to the Sushi Treasury. When your SUSHI is staked into the SushiBar, you receive xSUSHI in return for voting rights and a fully composable token that can interact with other protocols. Your xSUSHI is continuously compounding, when you unstake you will receive all the originally deposited SUSHI and any additional from fees.\n\n[SUSHI token can be staked into xSUSHI here](https://app.sushi.com/bar?chainId=1)',
     tokens: [{
       id: '0x6b3595068778dd592e39a122f4f5a5cf09c90fe2'.toLowerCase(),
       name: 'Sushi',
@@ -174,6 +174,78 @@ If token holder votes on the proposal, they override the voting power of the per
     }, {
       id: '0x03d1B1A56708FA298198DD5e23651a29B76a16d2'.toLowerCase(),
       name: 'v1INCH',
+    }],
+  },
+  stakewise: {
+    snapshotId: 'stakewise.eth',
+    name: 'StakeWise',
+    logo: 'ipfs://Qmckxz2Yk4qXUEaAYUFc6jCEmX1LegQWuAgZfPtPNGaJg5',
+    overview: '',
+    tokenOverview: '',
+    tokens: [{
+      id: '0x48c3399719b582dd63eb5aadf12a40b4c3f52fa2'.toLowerCase(),
+      name: 'StakeWise',
+      main: true,
+    }],
+  },
+  opium: {
+    snapshotId: 'opiumprotocol.eth',
+    name: 'Opium Network',
+    logo: 'ipfs://QmRdGaDLqZqPwhaECYZawWemCexG92wQoMJnJovYbvHiYx',
+    overview: '',
+    tokenOverview: '',
+    tokens: [{
+      id: '0x888888888889c00c67689029d7856aac1065ec11'.toLowerCase(),
+      name: 'Opium',
+      main: true,
+    }],
+  },
+  paraswap: {
+    snapshotId: 'paraswap-dao.eth',
+    name: 'ParaSwap DAO',
+    logo: 'ipfs://Qmf888qtRaqBWztu8tjE6VbgUwWoMyAwYJz2pQYSykge1L',
+    overview: '',
+    tokenOverview: '',
+    tokens: [{
+      id: '0xcafe001067cdef266afb7eb5a286dcfd277f3de5'.toLowerCase(),
+      name: 'ParaSwap',
+      main: true,
+    }],
+  },
+  lido: {
+    snapshotId: 'lido-snapshot.eth',
+    name: 'Lido',
+    logo: 'ipfs://QmT4DNWx6eRxUPeDp1NMtBv6pvQ9tMdTk1aRMWNfPqpZWG',
+    overview: '',
+    tokenOverview: '',
+    tokens: [{
+      id: '0x5a98fcbea516cf06857215779fd812ca3bef1b32'.toLowerCase(),
+      name: 'Lido DAO',
+      main: true,
+    }],
+  },
+  poolTogether: {
+    snapshotId: 'pooltogether.eth',
+    name: 'PoolTogether',
+    logo: 'ipfs://QmZ2kX5Eo79yaYJBqxZC9bxtGfgCDF3vQ2zM1vMx6A7PW8',
+    overview: '',
+    tokenOverview: '',
+    tokens: [{
+      id: '0x0cec1a9154ff802e7934fc916ed7ca50bde6844e'.toLowerCase(),
+      name: 'PoolTogether',
+      main: true,
+    }],
+  },
+  balancer: {
+    snapshotId: 'balancer.eth',
+    name: 'Balancer',
+    logo: 'ipfs://QmfQDYJF93G53RcCUaCzyy2eEViM6kCVmp6UMKPqcM649H',
+    overview: '',
+    tokenOverview: '',
+    tokens: [{
+      id: '0xba100000625a3754423978a60c9317c58a424e3d'.toLowerCase(),
+      name: 'Balancer',
+      main: true,
     }],
   },
 }
@@ -563,6 +635,23 @@ const main = async () => {
     if (existingProposals.length) {
       return
     }
+  }
+
+  for (const daoData of Object.values(dao)) {
+    const { tokens, ...dao } = daoData
+    const { id: daoId } = await repositories.dao.upsert({
+      select: { id: true },
+      where: { snapshotId: daoData.snapshotId },
+      create: dao,
+      update: dao,
+    })
+    await Promise.all(
+      tokens.map(token => repositories.token.upsert({
+        where: { id: token.id },
+        create: { ...token, daoId },
+        update: { ...token, daoId },
+      }))
+    )
   }
 
   for (const propData of dataset) {
