@@ -603,7 +603,7 @@ Protocol swap fees are a percentage of swap fees collected by pools. These go to
   },
 }
 
-const dataset = [{
+const proposals = [{
   dao: dao.aave,
   snapshotId: '0x81a78109941e5e0ac6cb5ebf82597c839c20ad6821a8c3ff063dba39032533d4',
   author: '0xd2362DbB5Aa708Bc454Ce5C3F11050C016764fA6'.toLowerCase(),
@@ -980,6 +980,16 @@ The team is requesting an exemption to use the Uniswap code to deploy it on Gnos
   discussionLink: '',
 }]
 
+const emojies = [{
+  url: 'https://storage.googleapis.com/holdim-items/images/emojis/party-popper_1f389.png',
+}, {
+  url: 'https://storage.googleapis.com/holdim-items/images/emojis/pile-of-poo_1f4a9.png',
+}, {
+  url: 'https://storage.googleapis.com/holdim-items/images/emojis/thumbs-down_1f44e.png',
+}, {
+  url: 'https://storage.googleapis.com/holdim-items/images/emojis/thumbs-up_1f44d.png',
+}]
+
 const main = async () => {
   const forceUpsert = process.env.SEED_FORCE_UPSERT
   if (!forceUpsert) {
@@ -1007,7 +1017,7 @@ const main = async () => {
     )
   }
 
-  for (const propData of dataset) {
+  for (const propData of proposals) {
     const { tokens, ...dao } = propData.dao
     const { id: daoId } = await repositories.dao.upsert({
       select: { id: true },
@@ -1028,6 +1038,10 @@ const main = async () => {
       create: { ...omit(propData, 'dao'), daoId },
       update: omit(propData, 'dao'),
     })
+  }
+
+  for (const emoji of emojies) {
+    await repositories.emoji.upsert({ update: {}, create: emoji, where: { url: emoji.url } })
   }
 }
 

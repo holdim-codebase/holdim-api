@@ -16,4 +16,7 @@ config:
     Proposal: .prisma/client#Proposal as ProposalModel
     ProposalPoll: .prisma/client#Proposal as ProposalModel
     DAO: .prisma/client#Dao as DAOModel
+    Emoji: .prisma/client#Emoji as EmojiModel
     DaoPersonalizedData: .prisma/client#Dao as DAOModel
+    ProposalPersonalizedData: .prisma/client#Proposal as ProposalModel
+    ProposalStatisticData: .prisma/client#Proposal as ProposalModel

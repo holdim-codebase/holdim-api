@@ -6,6 +6,29 @@ import { repositories } from '../repositories'
 import { snapshotVotesDataloader } from '../services/snapshot'
 import { paginatedResult } from '../utils/pagination'
 
+export const ProposalPersonalizedDataResolver: Resolvers['ProposalPersonalizedData'] = {
+  pickedEmojiId: async ({ id }, args, ctx) => {
+    const reaction = await repositories.userProposalEmoji.findUnique({ where: { proposalId_userId: { proposalId: id, userId: ctx.user.uid } } })
+    if (reaction) {
+      const emoji = await repositories.emoji.findUnique({ where: { id: reaction.emojiId } })
+      return emoji?.id.toString() || null
+    }
+
+    return null
+  },
+}
+
+export const ProposalStatisticDataResolver: Resolvers['ProposalStatisticData'] = {
+  emojiCount: async ({ id }) => {
+    return Promise.all(
+      (await repositories.emoji.findMany()).map(async emoji => ({
+        emojiId: emoji.id.toString(),
+        count: await repositories.userProposalEmoji.count({ where: { proposalId: id, emojiId: emoji.id } }) ?? 0,
+      }))
+    )
+  },
+}
+
 export const PollResolver: Resolvers['ProposalPoll'] = {
   scores: async ({ snapshotId }) => {
     const proposalVotes = await snapshotVotesDataloader.load(snapshotId)
@@ -46,6 +69,8 @@ export const proposalResolver: Resolvers['Proposal'] = {
   snapshotLink: ({ snapshotLink }) => snapshotLink,
   discussionLink: ({ discussionLink }) => discussionLink,
 
+  personalizedData: proposal => proposal,
+  statisticData: proposal => proposal,
   poll: proposal => proposal,
 }
 

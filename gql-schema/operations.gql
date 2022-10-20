@@ -6,6 +6,8 @@ type Query {
 
   daos(ids: [ID!], onlyFollowed: Boolean): [DAO!]! @deprecated(reason: "Lacks pagination. Use `daosV2`")
   daosV2(first: Int, after: String, ids: [ID!], onlyFollowed: Boolean, search: String): DAOConnection!
+
+  emojis: [Emoji!]!
 }
 
 type Mutation {
@@ -16,4 +18,10 @@ type Mutation {
 
   addWallet(walletAddress: ID!): Wallet!
   deleteWallet: Wallet!
+
+  # Sets users reaction to proposal
+  # - If no emoji set by this user -- will set it
+  # - If another emoji is already set -- will remove the other one and set provided one
+  # - If the same emoji is already set -- will remove this emoji
+  changeProposalEmoji(proposalId: ID!, emojiId: ID!): Proposal!
 }

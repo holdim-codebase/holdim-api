@@ -1,3 +1,16 @@
+type ProposalPersonalizedData {
+  pickedEmojiId: ID
+}
+
+type EmojiCountItem {
+  emojiId: ID!
+  count: Int!
+}
+
+type ProposalStatisticData {
+  emojiCount: [EmojiCountItem!]!
+}
+
 # Proposal poll types were taken from Snapshot GraphQL API
 type ProposalPoll {
   scores: [Float]
@@ -23,6 +36,8 @@ type Proposal implements Node {
   author: String!
   snapshotLink: String!
   discussionLink: String
+  personalizedData: ProposalPersonalizedData!
+  statisticData: ProposalStatisticData
 
   poll: ProposalPoll
 }
