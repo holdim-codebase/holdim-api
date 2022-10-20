@@ -20,7 +20,9 @@ export const emojiMutationResolvers: Resolvers['Mutation'] = {
       await repositories.userProposalEmoji.delete({ where: { proposalId_userId: { proposalId: Number(proposalId), userId: ctx.user.uid } } })
     }
 
-    await repositories.userProposalEmoji.create({ data: { proposalId: Number(proposalId), userId: ctx.user.uid, emojiId: Number(emojiId) } })
+    if (existingReaction?.emojiId !== Number(emojiId)) {
+      await repositories.userProposalEmoji.create({ data: { proposalId: Number(proposalId), userId: ctx.user.uid, emojiId: Number(emojiId) } })
+    }
 
     return (await repositories.proposal.findUnique({ where: { id: Number(proposalId) } }))!
   },
