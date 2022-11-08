@@ -92,15 +92,19 @@ export const proposalQueryResolvers: Resolvers['Query'] = {
     if (!ctx.wallet?.id) {
       throw new ApolloError('Missing wallet')
     }
+
     return paginatedResult(
       repositories.proposal,
       {
-        id: ids ? { in: ids.map(Number) } : undefined,
-        dao: omitBy({
-            id: daoIds ? { in: daoIds.map(Number) } : undefined,
-            WalletDaoFollow: onlyFollowedDaos ? { some: { walletId: ctx.wallet.id } } : undefined,
-          }, isUndefined),
-        issueNumber: { not: null },
+        AND: [{
+          id: ids ? { in: ids.map(Number) } : undefined,
+          dao: omitBy({
+              id: daoIds ? { in: daoIds.map(Number) } : undefined,
+              WalletDaoFollow: onlyFollowedDaos ? { some: { walletId: ctx.wallet.id } } : undefined,
+            }, isUndefined),
+        }, {
+          NOT: { issueNumber: null },
+        }],
       },
       { issueNumber: 'desc' },
       first ?? undefined,
