@@ -4,6 +4,7 @@ import { repositories } from '../repositories'
 export const emojiResolver: Resolvers['Emoji'] = {
   id: ({ id }) => id.toString(),
   url: ({ url }) => url,
+  unicode: ({ unicode }) => unicode,
 }
 
 export const emojiQueryResolvers: Resolvers['Query'] = {

@@ -92,6 +92,7 @@ model WalletDaoFollow {
 model Emoji {
   id           Int            @id @default(autoincrement())
   url          String @unique
+  unicode      String
   UserDaoEmoji UserProposalEmoji[]
 }
 
