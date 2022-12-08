@@ -36,7 +36,7 @@ type Proposal implements Node {
   author: String!
   snapshotLink: String!
   discussionLink: String
-  personalizedData: ProposalPersonalizedData!
+  personalizedData: ProposalPersonalizedData
   statisticData: ProposalStatisticData
 
   poll: ProposalPoll

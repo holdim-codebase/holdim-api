@@ -1,3 +1,4 @@
+import { ApolloError } from 'apollo-server'
 import { Resolvers } from '../generated/graphql'
 import { repositories } from '../repositories'
 
@@ -15,6 +16,10 @@ export const emojiQueryResolvers: Resolvers['Query'] = {
 
 export const emojiMutationResolvers: Resolvers['Mutation'] = {
   changeProposalEmoji: async (parent, { proposalId, emojiId }, ctx) => {
+    if (!ctx.user) {
+      throw new ApolloError('Must be user')
+    }
+
     const existingReaction = await repositories.userProposalEmoji.findUnique({ where: { proposalId_userId: { proposalId: Number(proposalId), userId: ctx.user.uid } } })
 
     if (existingReaction) {

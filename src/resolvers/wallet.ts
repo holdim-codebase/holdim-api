@@ -16,6 +16,10 @@ export const walletResolver: Resolvers['Wallet'] = {
 
 export const walletMutationResolver: Resolvers['Mutation'] = {
   addWallet: async (parent, { walletAddress }, ctx) => {
+    if (!ctx.user) {
+      throw new ApolloError('Must be user')
+    }
+
     const { hexAddress, ens, daosToFollow } = await processNewWallet(walletAddress)
 
     return repositories.wallet.create({

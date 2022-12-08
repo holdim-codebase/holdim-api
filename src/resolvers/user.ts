@@ -19,18 +19,26 @@ export const userResolver: Resolvers['User'] = {
 }
 
 export const userQueryResolvers: Resolvers['Query'] = {
-  me: (parent, args, context) => {
-    return repositories.user.findUnique({ where: { id: context.user.uid } }) as Promise<User>
+  me: (parent, args, ctx) => {
+    if (!ctx.user) {
+      throw new ApolloError('Must be user')
+    }
+
+    return repositories.user.findUnique({ where: { id: ctx.user.uid } }) as Promise<User>
   },
 }
 
 export const userMutationResolvers: Resolvers['Mutation'] = {
-  registerUser: async (parent, args, context) => {
+  registerUser: async (parent, args, ctx) => {
+    if (!ctx.user) {
+      throw new ApolloError('Must be user')
+    }
+
     const { hexAddress, ens, daosToFollow } = await processNewWallet(args.walletAddress)
 
     return repositories.user.create({
       data: {
-        id: context.user.uid,
+        id: ctx.user.uid,
         Wallet: {
           create: {
             address: hexAddress,

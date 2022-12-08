@@ -8,6 +8,10 @@ import { paginatedResult } from '../utils/pagination'
 
 export const ProposalPersonalizedDataResolver: Resolvers['ProposalPersonalizedData'] = {
   pickedEmojiId: async ({ id }, args, ctx) => {
+    if (!ctx.user) {
+      throw new ApolloError('Must be user')
+    }
+
     const reaction = await repositories.userProposalEmoji.findUnique({ where: { proposalId_userId: { proposalId: id, userId: ctx.user.uid } } })
     if (reaction) {
       const emoji = await repositories.emoji.findUnique({ where: { id: reaction.emojiId } })
@@ -69,9 +73,18 @@ export const proposalResolver: Resolvers['Proposal'] = {
   snapshotLink: ({ snapshotLink }) => snapshotLink,
   discussionLink: ({ discussionLink }) => discussionLink,
 
-  personalizedData: proposal => proposal,
-  statisticData: proposal => proposal,
-  poll: proposal => proposal,
+  personalizedData: (proposal, _, ctx) => {
+    if (ctx.organization) { return null }
+    return proposal
+  },
+  statisticData: (proposal, _, ctx) => {
+    if (ctx.organization) { return null }
+    return proposal
+  },
+  poll: (proposal, _, ctx) => {
+    if (ctx.organization) { return null }
+    return proposal
+  },
 }
 
 export const proposalQueryResolvers: Resolvers['Query'] = {
@@ -83,13 +96,16 @@ export const proposalQueryResolvers: Resolvers['Query'] = {
         id: ids ? { in: ids.map(Number) } : undefined,
         dao: omitBy({
             id: daoIds ? { in: daoIds.map(Number) } : undefined,
-            UserDaoFollow: onlyFollowedDaos ? { some: { userId: ctx.user.uid } } : undefined,
+            UserDaoFollow: (onlyFollowedDaos && ctx.user) ? { some: { userId: ctx.user.uid } } : undefined,
           }, isUndefined),
       },
     })
   },
   proposalsV2: async (parent, { onlyFollowedDaos, daoIds, first, after, ids }, ctx) => {
-    if (!ctx.wallet?.id) {
+    if (ctx.organization) {
+      onlyFollowedDaos = false
+    }
+    if (!ctx.organization && !ctx.wallet?.id) {
       throw new ApolloError('Missing wallet')
     }
 
@@ -100,7 +116,7 @@ export const proposalQueryResolvers: Resolvers['Query'] = {
           id: ids ? { in: ids.map(Number) } : undefined,
           dao: omitBy({
               id: daoIds ? { in: daoIds.map(Number) } : undefined,
-              WalletDaoFollow: onlyFollowedDaos ? { some: { walletId: ctx.wallet.id } } : undefined,
+              WalletDaoFollow: onlyFollowedDaos ? { some: { walletId: ctx.wallet!.id } } : undefined,
             }, isUndefined),
         }, {
           NOT: { issueNumber: null },
