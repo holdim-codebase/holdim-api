@@ -101,7 +101,7 @@ export const proposalQueryResolvers: Resolvers['Query'] = {
       },
     })
   },
-  proposalsV2: async (parent, { onlyFollowedDaos, daoIds, first, after, ids }, ctx) => {
+  proposalsV2: async (parent, { onlyFollowedDaos, daoIds, first, after, ids, snapshotIds }, ctx) => {
     if (ctx.organization) {
       onlyFollowedDaos = false
     }
@@ -118,6 +118,7 @@ export const proposalQueryResolvers: Resolvers['Query'] = {
               id: daoIds ? { in: daoIds.map(Number) } : undefined,
               WalletDaoFollow: onlyFollowedDaos ? { some: { walletId: ctx.wallet!.id } } : undefined,
             }, isUndefined),
+          snapshotId: snapshotIds ? { in: snapshotIds } : undefined,
         }, {
           NOT: { issueNumber: null },
         }],

@@ -51,7 +51,7 @@ export const daoQueryResolver: Resolvers['Query'] = {
 
     return repositories.dao.findMany({ take: 10, ...whereQuery })
   },
-  daosV2: async (parent, { first, after, ids, onlyFollowed, search }, ctx) => {
+  daosV2: async (parent, { first, after, ids, onlyFollowed, search, snapshotIds }, ctx) => {
     if (ctx.organization) {
       onlyFollowed = false
     }
@@ -61,6 +61,7 @@ export const daoQueryResolver: Resolvers['Query'] = {
 
     const query: Parameters<typeof repositories['dao']['findMany']>[0] = {
       where: {
+        snapshotId: snapshotIds ? { in: snapshotIds } : undefined,
         name: { contains: search ?? undefined, mode: 'insensitive' },
         id: ids ? { in: ids.map(Number) } : undefined,
         WalletDaoFollow: onlyFollowed
