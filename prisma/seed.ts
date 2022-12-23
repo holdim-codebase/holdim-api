@@ -6,7 +6,7 @@ const dao = {
   aave: {
     snapshotId: 'aave.eth',
     name: 'Aave',
-    logo: 'ipfs://QmRKgfxSiCU3EmkN52ZaxgKvDyPFUR5DdPvnKxwyLRncKS',
+    logo: 'https://cdn.stamp.fyi/space/aave.eth?s=180',
     overview: `# Overview
 
 Aave is a lending and borrowing platform built on Ethereum that allows users to lend and borrow cryptocurrency using a decentralized protocol. Aave uses a lending pool model in which users can deposit their cryptocurrency into a pool and earn interest on their deposit. Borrowers can then take out loans from the pool and pay interest on the loan. Aave's protocol is designed to provide a safe and decentralized way to lend and borrow cryptocurrency.
@@ -124,7 +124,7 @@ Improvement policies define rules under which ecosystem improvements are incepte
   gelato: {
     snapshotId: 'gelato.eth',
     name: 'Gelato DAO',
-    logo: 'ipfs://QmVHV8tspoHoQtqFVjHdrG17k74CyLvUhd88y8Kt4y7bma',
+    logo: 'https://cdn.stamp.fyi/space/gelato.eth?s=180',
     overview: `## Overview
 
 The Gelato DAO is powered by the Gelato token (GEL). The Gelato token is the central focal point of all relevant stakeholders in the network. The token exists as a utility for effective incentive alignment amongst the protocols' participants. Token holders will be able to signal their support for or opposition to Proposals in the Gelato DAO.
@@ -176,7 +176,7 @@ Rewards come from two sources:
   sushi: {
     snapshotId: 'sushigov.eth',
     name: 'Sushi',
-    logo: 'ipfs://QmT1Ban8im8JQm2gqYSoMGaLZTgxR8nFyrYBF7MgWvRKFh',
+    logo: 'https://cdn.stamp.fyi/space/sushigov.eth?s=180',
     overview: `# Overview
 
 Sushi is a decentralized organization that provides a variety of products and services to help solve the liquidity problem. These products include a decentralized exchange, a decentralized lending market, yield instruments, an auction platform, an AMM framework, and staking derivatives.
@@ -221,7 +221,7 @@ For every swap on the exchange on every chain, 0.045% of the swap fees are distr
   ens: {
     snapshotId: 'ens.eth',
     name: 'ENS',
-    logo: 'ipfs://QmSL2X1h1uk26ahSALTw2qKyc61VaySRRstueVMm1Aym3e',
+    logo: 'https://cdn.stamp.fyi/space/ens.eth?s=180',
     overview: `# Overview
 
 There are three types of proposals: executable, social, and constitutional amendments - to allow for a variety of topics to be discussed and voted on by the DAO.
@@ -270,7 +270,7 @@ ENS holders can decide on a variety of topics, including changes to registration
   uniswap: {
     snapshotId: 'uniswap',
     name: 'Uniswap',
-    logo: 'ipfs://QmdNntEZMnen3QE9GfHG4heeqMJkFjxQ9BDof4m8xzV6UT',
+    logo: 'https://cdn.stamp.fyi/space/uniswap?s=180',
     overview: `# Overview
 
 Uniswap is a decentralized protocol for exchanging Ethereum tokens. The protocol is designed to be simple and easy to use, and it doesn't require users to deposit their tokens into a centralized exchange. Instead, users can trade directly from their own wallets.
@@ -321,7 +321,7 @@ If you want to dive deeper into the on-chain part of the voting [check this Begi
   oneInch: {
     snapshotId: '1inch.eth',
     name: '1inch Network',
-    logo: 'https://app.1inch.io/assets/favicon/apple-touch-icon.png',
+    logo: 'https://cdn.stamp.fyi/space/1inch.eth?s=180',
     overview: `# Overview
 1inch is a decentralized exchange aggregator that sources liquidity from a variety of DEXes and provides users with the best price possible for their trade.
 
@@ -395,7 +395,7 @@ If token holder votes on the proposal, they override the voting power of the per
   stakewise: {
     snapshotId: 'stakewise.eth',
     name: 'StakeWise',
-    logo: 'ipfs://Qmckxz2Yk4qXUEaAYUFc6jCEmX1LegQWuAgZfPtPNGaJg5',
+    logo: 'https://cdn.stamp.fyi/space/stakewise.eth?s=180',
     overview: `# Overview
 The DAO governs the important system parameters like fees paid by stakers, commissions paid to node operators, onboarding and offboarding of oracles and node operators, principles of liquidity mining campaigns, whitelisting of gauge contracts, insurance fund payout triggers, approval of contract changes for the introduction of new features, and more.
 
@@ -429,7 +429,7 @@ The DAO governs the important system parameters like fees paid by stakers, commi
   opium: {
     snapshotId: 'opiumprotocol.eth',
     name: 'Opium Network',
-    logo: 'ipfs://QmRdGaDLqZqPwhaECYZawWemCexG92wQoMJnJovYbvHiYx',
+    logo: 'https://cdn.stamp.fyi/space/opiumprotocol.eth?s=180',
     overview: '',
     tokenOverview: `# Opium token
 
@@ -455,7 +455,7 @@ Currently, users of the Opium protocol can receive $Opium tokens through liquidi
   paraswap: {
     snapshotId: 'paraswap-dao.eth',
     name: 'ParaSwap DAO',
-    logo: 'ipfs://Qmf888qtRaqBWztu8tjE6VbgUwWoMyAwYJz2pQYSykge1L',
+    logo: 'https://cdn.stamp.fyi/space/paraswap-dao.eth?s=180',
     overview: '',
     tokenOverview: '',
     tokens: [{
@@ -467,7 +467,7 @@ Currently, users of the Opium protocol can receive $Opium tokens through liquidi
   lido: {
     snapshotId: 'lido-snapshot.eth',
     name: 'Lido',
-    logo: 'ipfs://QmT4DNWx6eRxUPeDp1NMtBv6pvQ9tMdTk1aRMWNfPqpZWG',
+    logo: 'https://cdn.stamp.fyi/space/lido-snapshot.eth?s=180',
     overview: `# Overview
 Committees in Lido Protocol are used to streamline routine governance operations. Each committee has a specific task, such as managing the node operator registry or distributing rewards.
 
@@ -510,7 +510,7 @@ The RCC committee is dedicated to reduce operational burden on Lido DAO members.
   poolTogether: {
     snapshotId: 'pooltogether.eth',
     name: 'PoolTogether',
-    logo: 'ipfs://QmZ2kX5Eo79yaYJBqxZC9bxtGfgCDF3vQ2zM1vMx6A7PW8',
+    logo: 'https://cdn.stamp.fyi/space/pooltogether.eth?s=180',
     overview: `# Overview
 
 PoolTogether DAO is a decentralized autonomous organization that governs the PoolTogether protocol.
@@ -543,7 +543,7 @@ PoolTogether DAO is a decentralized autonomous organization that governs the Poo
   balancer: {
     snapshotId: 'balancer.eth',
     name: 'Balancer',
-    logo: 'ipfs://QmfQDYJF93G53RcCUaCzyy2eEViM6kCVmp6UMKPqcM649H',
+    logo: 'https://cdn.stamp.fyi/space/balancer.eth?s=180',
     overview: `# Overview
 
 Balancer is a decentralized liquidity protocol that enables users to pool their assets and trade with each other in a fair, transparent, and automated way.
@@ -598,6 +598,142 @@ Protocol swap fees are a percentage of swap fees collected by pools. These go to
     tokens: [{
       id: '0xba100000625a3754423978a60c9317c58a424e3d'.toLowerCase(),
       name: 'Balancer',
+      main: true,
+    }],
+  },
+  stargate: {
+    snapshotId: 'stgdao.eth',
+    name: 'Stargate DAO',
+    logo: 'https://cdn.stamp.fyi/space/stgdao.eth?s=180',
+    overview: '',
+    tokenOverview: '',
+    tokens: [{
+      id: '0x0e42acBD23FAee03249DAFF896b78d7e79fBD58E'.toLowerCase(),
+      name: 'veSTG',
+      main: true,
+    }, {
+      id: '0x9485DbDa44B279311e3eEe374CED60b5364A97d9'.toLowerCase(),
+      name: 'sveSTG',
+      main: false,
+    }],
+  },
+  frax: {
+    snapshotId: 'frax.eth',
+    name: 'Frax',
+    logo: 'https://cdn.stamp.fyi/space/frax.eth?s=180',
+    overview: '',
+    tokenOverview: '',
+    tokens: [{
+      id: '0x3432B6A60D23Ca0dFCa7761B7ab56459D9C964D0'.toLowerCase(),
+      name: 'FXS',
+      main: true,
+    }, {
+      id: '0xc8418aF6358FFddA74e09Ca9CC3Fe03Ca6aDC5b0'.toLowerCase(),
+      name: 'veFXS',
+      main: false,
+    }],
+  },
+  rocketpool: {
+    snapshotId: 'rocketpool-dao.eth',
+    name: 'Rocket Pool',
+    logo: 'https://cdn.stamp.fyi/space/rocketpool-dao.eth?s=180',
+    overview: '',
+    tokenOverview: '',
+    tokens: [{
+      id: '0xD33526068D116cE69F19A9ee46F0bd304F21A51f'.toLowerCase(),
+      name: 'RPL',
+      main: true,
+    }],
+  },
+  angleProtocol: {
+    snapshotId: 'anglegovernance.eth',
+    name: 'Angle Protocol',
+    logo: 'https://cdn.stamp.fyi/space/anglegovernance.eth?s=180',
+    overview: '',
+    tokenOverview: '',
+    tokens: [{
+      id: '0x0C462Dbb9EC8cD1630f1728B2CFD2769d09f0dd5'.toLowerCase(),
+      name: 'veANGLE',
+      main: true,
+    }],
+  },
+  fei: {
+    snapshotId: 'fei.eth',
+    name: 'Fei',
+    logo: 'https://cdn.stamp.fyi/space/fei.eth?s=180',
+    overview: '',
+    tokenOverview: '',
+    tokens: [{
+      id: '0x1165a505e8c4e82b7b98e77374c789dbd7b53f9a'.toLowerCase(),
+      name: 'TRIBE',
+      main: true,
+    }],
+  },
+  olympus: {
+    snapshotId: 'olympusdao.eth',
+    name: 'OlympusDAO',
+    logo: 'https://cdn.stamp.fyi/space/olympusdao.eth?s=180',
+    overview: '',
+    tokenOverview: '',
+    tokens: [{
+      id: '0x31932e6e45012476ba3a3a4953cba62aee77fbbe'.toLowerCase(),
+      name: 'sOHM',
+      main: true,
+    }],
+  },
+  dydx: {
+    snapshotId: 'dydxgov.eth',
+    name: 'dYdX',
+    logo: 'https://cdn.stamp.fyi/space/dydxgov.eth?s=180',
+    overview: '',
+    tokenOverview: '',
+    tokens: [{
+      id: '0x90Dfd35F4a0BB2d30CDf66508085e33C353475D9'.toLowerCase(),
+      name: 'DYDX',
+      main: true,
+    }],
+  },
+  bitdao: {
+    snapshotId: 'bitdao.eth',
+    name: 'BitDAO',
+    logo: 'https://cdn.stamp.fyi/space/bitdao.eth?s=180',
+    overview: '',
+    tokenOverview: '',
+    tokens: [{
+      id: '0x1A4b46696b2bB4794Eb3D4c26f1c55F9170fa4C5'.toLowerCase(),
+      name: 'BIT',
+      main: true,
+    }],
+  },
+  interfacedao: {
+    snapshotId: 'interfacedao.eth',
+    name: 'Interface DAO',
+    logo: 'https://cdn.stamp.fyi/space/interfacedao.eth?s=180',
+    overview: '',
+    tokenOverview: '',
+    tokens: [],
+  },
+  banklessvault: {
+    snapshotId: 'banklessvault.eth',
+    name: 'Bankless DAO',
+    logo: 'https://cdn.stamp.fyi/space/banklessvault.eth?s=180',
+    overview: '',
+    tokenOverview: '',
+    tokens: [{
+      id: '0x2d94AA3e47d9D5024503Ca8491fcE9A2fB4DA198'.toLowerCase(),
+      name: 'BANK',
+      main: true,
+    }],
+  },
+  hop: {
+    snapshotId: 'hop.eth',
+    name: 'Hop',
+    logo: 'https://cdn.stamp.fyi/space/hop.eth?s=180',
+    overview: '',
+    tokenOverview: '',
+    tokens: [{
+      id: '0xc5102fE9359FD9a28f877a67E36B0F050d81a3CC'.toLowerCase(),
+      name: 'HOP',
       main: true,
     }],
   },
