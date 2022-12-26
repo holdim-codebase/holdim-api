@@ -1118,12 +1118,16 @@ The team is requesting an exemption to use the Uniswap code to deploy it on Gnos
 
 const emojies = [{
   url: 'https://storage.googleapis.com/holdim-items/images/emojis/party-popper_1f389.png',
+  unicode: '🎉',
 }, {
   url: 'https://storage.googleapis.com/holdim-items/images/emojis/pile-of-poo_1f4a9.png',
+  unicode: '💩',
 }, {
   url: 'https://storage.googleapis.com/holdim-items/images/emojis/thumbs-down_1f44e.png',
+  unicode: '👎',
 }, {
   url: 'https://storage.googleapis.com/holdim-items/images/emojis/thumbs-up_1f44d.png',
+  unicode: '👍',
 }]
 
 const main = async () => {
