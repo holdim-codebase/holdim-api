@@ -687,10 +687,6 @@ Protocol swap fees are a percentage of swap fees collected by pools. These go to
       id: '0x92D6C1e31e14520e676a687F0a93788B716BEff5'.toLowerCase(),
       name: 'DYDX',
       main: true,
-    }, {
-      id: '0x65f7BA4Ec257AF7c55fd5854E5f6356bBd0fb8EC'.toLowerCase(),
-      name: 'stkDYDX',
-      main: false,
     }],
   },
   bitdao: {
