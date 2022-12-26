@@ -608,13 +608,9 @@ Protocol swap fees are a percentage of swap fees collected by pools. These go to
     overview: '',
     tokenOverview: '',
     tokens: [{
-      id: '0x0e42acBD23FAee03249DAFF896b78d7e79fBD58E'.toLowerCase(),
-      name: 'veSTG',
+      id: '0xAf5191B0De278C7286d6C7CC6ab6BB8A73bA2Cd6'.toLowerCase(),
+      name: 'STG',
       main: true,
-    }, {
-      id: '0x9485DbDa44B279311e3eEe374CED60b5364A97d9'.toLowerCase(),
-      name: 'sveSTG',
-      main: false,
     }],
   },
   frax: {
@@ -652,8 +648,8 @@ Protocol swap fees are a percentage of swap fees collected by pools. These go to
     overview: '',
     tokenOverview: '',
     tokens: [{
-      id: '0x0C462Dbb9EC8cD1630f1728B2CFD2769d09f0dd5'.toLowerCase(),
-      name: 'veANGLE',
+      id: '0x31429d1856aD1377A8A0079410B297e1a9e214c2'.toLowerCase(),
+      name: 'ANGLE',
       main: true,
     }],
   },
@@ -664,7 +660,7 @@ Protocol swap fees are a percentage of swap fees collected by pools. These go to
     overview: '',
     tokenOverview: '',
     tokens: [{
-      id: '0x1165a505e8c4e82b7b98e77374c789dbd7b53f9a'.toLowerCase(),
+      id: '0xc7283b66Eb1EB5FB86327f08e1B5816b0720212B'.toLowerCase(),
       name: 'TRIBE',
       main: true,
     }],
@@ -676,7 +672,7 @@ Protocol swap fees are a percentage of swap fees collected by pools. These go to
     overview: '',
     tokenOverview: '',
     tokens: [{
-      id: '0x31932e6e45012476ba3a3a4953cba62aee77fbbe'.toLowerCase(),
+      id: '0x04F2694C8fcee23e8Fd0dfEA1d4f5Bb8c352111F'.toLowerCase(),
       name: 'sOHM',
       main: true,
     }],
@@ -688,9 +684,13 @@ Protocol swap fees are a percentage of swap fees collected by pools. These go to
     overview: '',
     tokenOverview: '',
     tokens: [{
-      id: '0x90Dfd35F4a0BB2d30CDf66508085e33C353475D9'.toLowerCase(),
+      id: '0x92D6C1e31e14520e676a687F0a93788B716BEff5'.toLowerCase(),
       name: 'DYDX',
       main: true,
+    }, {
+      id: '0x65f7BA4Ec257AF7c55fd5854E5f6356bBd0fb8EC'.toLowerCase(),
+      name: 'stkDYDX',
+      main: false,
     }],
   },
   bitdao: {
@@ -705,14 +705,14 @@ Protocol swap fees are a percentage of swap fees collected by pools. These go to
       main: true,
     }],
   },
-  interfacedao: {
-    snapshotId: 'interfacedao.eth',
-    name: 'Interface DAO',
-    logo: 'https://cdn.stamp.fyi/space/interfacedao.eth?s=180',
-    overview: '',
-    tokenOverview: '',
-    tokens: [],
-  },
+  // interfacedao: {
+  //   snapshotId: 'interfacedao.eth',
+  //   name: 'Interface DAO',
+  //   logo: 'https://cdn.stamp.fyi/space/interfacedao.eth?s=180',
+  //   overview: '',
+  //   tokenOverview: '',
+  //   tokens: [],
+  // },
   banklessvault: {
     snapshotId: 'banklessvault.eth',
     name: 'Bankless DAO',
