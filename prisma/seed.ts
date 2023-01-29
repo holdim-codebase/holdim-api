@@ -733,6 +733,102 @@ Protocol swap fees are a percentage of swap fees collected by pools. These go to
       main: true,
     }],
   },
+  optimism: {
+    snapshotId: 'opcollective.eth',
+    name: 'Optimism Collective',
+    logo: 'https://cdn.stamp.fyi/space/opcollective.eth?s=180',
+    overview: '',
+    tokenOverview: '',
+    tokens: [{
+      id: '0x4200000000000000000000000000000000000042'.toLowerCase(),
+      name: 'OP',
+      main: true,
+    }],
+  },
+  shapeshift: {
+    snapshotId: 'shapeshiftdao.eth',
+    name: 'ShapeShift',
+    logo: 'https://cdn.stamp.fyi/space/shapeshiftdao.eth?s=180',
+    overview: '',
+    tokenOverview: '',
+    tokens: [{
+      id: '0xc770eefad204b5180df6a14ee197d99d808ee52d'.toLowerCase(),
+      name: 'FOX',
+      main: true,
+    }],
+  },
+  gearbox: {
+    snapshotId: 'gearbox.eth',
+    name: 'Gearbox',
+    logo: 'https://cdn.stamp.fyi/space/gearbox.eth?s=180',
+    overview: '',
+    tokenOverview: '',
+    tokens: [{
+      id: '0xBa3335588D9403515223F109EdC4eB7269a9Ab5D'.toLowerCase(),
+      name: 'GEAR',
+      main: true,
+    }],
+  },
+  gitcoin: {
+    snapshotId: 'gitcoindao.eth',
+    name: 'Gitcoin',
+    logo: 'https://cdn.stamp.fyi/space/gitcoindao.eth?s=180',
+    overview: '',
+    tokenOverview: '',
+    tokens: [{
+      id: '0xde30da39c46104798bb5aa3fe8b9e0e1f348163f'.toLowerCase(),
+      name: 'GTC',
+      main: true,
+    }],
+  },
+  pancake: {
+    snapshotId: 'cakevote.eth',
+    name: 'PancakeSwap',
+    logo: 'https://cdn.stamp.fyi/space/cakevote.eth?s=180',
+    overview: '',
+    tokenOverview: '',
+    tokens: [{
+      id: '0x0e09fabb73bd3ade0a17ecc321fd13a19e81ce82'.toLowerCase(),
+      name: 'CAKE',
+      main: true,
+    }],
+  },
+  aavegotchi: {
+    snapshotId: 'aavegotchi.eth',
+    name: 'Aavegotchi',
+    logo: 'https://cdn.stamp.fyi/space/aavegotchi.eth?s=180',
+    overview: '',
+    tokenOverview: '',
+    tokens: [{
+      id: '0x3f382dbd960e3a9bbceae22651e88158d2791550'.toLowerCase(),
+      name: 'GHST',
+      main: true,
+    }],
+  },
+  gnosis: {
+    snapshotId: 'gnosis.eth',
+    name: 'GnosisDAO',
+    logo: 'https://cdn.stamp.fyi/space/gnosis.eth?s=180',
+    overview: '',
+    tokenOverview: '',
+    tokens: [{
+      id: '0x6810e776880c02933d47db1b9fc05908e5386b96'.toLowerCase(),
+      name: 'GNO',
+      main: true,
+    }],
+  },
+  cow: {
+    snapshotId: 'cow.eth',
+    name: 'CoW DAO',
+    logo: 'https://cdn.stamp.fyi/space/cow.eth?s=180',
+    overview: '',
+    tokenOverview: '',
+    tokens: [{
+      id: '0xdef1ca1fb7fbcdc777520aa7f396b4e015f497ab'.toLowerCase(),
+      name: 'COW',
+      main: true,
+    }],
+  },
 }
 
 const proposals = [{
