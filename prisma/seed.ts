@@ -781,18 +781,18 @@ Protocol swap fees are a percentage of swap fees collected by pools. These go to
       main: true,
     }],
   },
-  pancake: {
-    snapshotId: 'cakevote.eth',
-    name: 'PancakeSwap',
-    logo: 'https://cdn.stamp.fyi/space/cakevote.eth?s=180',
-    overview: '',
-    tokenOverview: '',
-    tokens: [{
-      id: '0x0e09fabb73bd3ade0a17ecc321fd13a19e81ce82'.toLowerCase(),
-      name: 'CAKE',
-      main: true,
-    }],
-  },
+  // pancake: {
+  //   snapshotId: 'cakevote.eth',
+  //   name: 'PancakeSwap',
+  //   logo: 'https://cdn.stamp.fyi/space/cakevote.eth?s=180',
+  //   overview: '',
+  //   tokenOverview: '',
+  //   tokens: [{
+  //     id: '0x0e09fabb73bd3ade0a17ecc321fd13a19e81ce82'.toLowerCase(),
+  //     name: 'CAKE',
+  //     main: true,
+  //   }],
+  // },
   aavegotchi: {
     snapshotId: 'aavegotchi.eth',
     name: 'Aavegotchi',
