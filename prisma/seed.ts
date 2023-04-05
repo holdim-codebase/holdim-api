@@ -419,7 +419,11 @@ The DAO governs the important system parameters like fees paid by stakers, commi
 **Time:** 7 days
 
 **Criteria:** The proposal vote must obtain a relative majority of the Snapshot vote in order to be implemented. Proposals that fail to meet these criteria will be dismissed and closed.`,
-    tokenOverview: '',
+    tokenOverview: `#  The StakeWise Token
+
+The $SWISE governance token allows holders to vote on and contribute to decisions regarding the StakeWise DAO and network. 
+
+Alignment of interests of the platform and its participants shall happen through an allocation of 51% of the governance token supply to the community and the existence of basic mechanisms that allow gaining voting power by simply staking with StakeWise.`,
     tokens: [{
       id: '0x48c3399719b582dd63eb5aadf12a40b4c3f52fa2'.toLowerCase(),
       name: 'StakeWise',
@@ -430,7 +434,27 @@ The DAO governs the important system parameters like fees paid by stakers, commi
     snapshotId: 'opiumprotocol.eth',
     name: 'Opium Network',
     logo: 'https://cdn.stamp.fyi/space/opiumprotocol.eth?s=180',
-    overview: '',
+    overview: `# Overview 
+
+Opium DAO is responsible for governing the Opium Protocol. It is collectively governed by Opium token holders, who have the power to propose actions, vote on them and allocate funds to support selected initiatives.
+
+## Governance process
+
+### **1. Discussion**
+
+A participant comes up with a proposal, discusses it with other Opium community members, collects feedback, analyzes all pros and cons
+
+### **2. Compromise** 
+
+The discussion is finalized when a compromise is reached
+
+### **3. Voting**
+
+The same or other participant makes a proposal on a signalling vote to decide if the proposal will be implemented or not. Community members have at least 48 hours to vote  on the proposal 
+
+### **4. Execution**
+
+If the proposal passes, blockchain executes the proposal automatically. Otherwise, or invalid transaction appears`,
     tokenOverview: `# Opium token
 
 
@@ -456,8 +480,46 @@ Currently, users of the Opium protocol can receive $Opium tokens through liquidi
     snapshotId: 'paraswap-dao.eth',
     name: 'ParaSwap DAO',
     logo: 'https://cdn.stamp.fyi/space/paraswap-dao.eth?s=180',
-    overview: '',
-    tokenOverview: '',
+    overview: `# Overview 
+The ParaSwap DAO is a decentralized organization that is responsible for coordinating and sustaining the network of peers required to run ParaSwap's infrastructure.
+
+## Governance process 
+
+The governance process is the process by which an idea is gradually formalized into an implementable proposal and put to a vote.
+
+### **1. Brainstorming on Discord**
+
+
+**Criteria:** Every community member can participate
+
+### **2. Redaction on the Governance Forum**
+
+**PS Research:** Here contributors exchange and address their technical questions to the team
+
+**Governance Proposal:** This section refers to proposals that are almost ready to be voted on**
+
+### **3. Snapshot voting**
+
+**Time:** 5 days
+
+**Quorum:** Minimum quorum of 3% of circulating supply
+
+**PSP treshold:** To submit a proposal, the voting power required is 5400 PSP
+
+**Implementation delay:** This parameter is specific to each proposal`,
+    tokenOverview: `#  The ParaSwap Token
+
+PSP is a token that is used to power the ParaSwap Protocol.
+
+51% of the total PSP supply (~1B PSP tokens) has been reserved to help grow the ecosystem and the community, through the initial distribution, the ecosystem incentives, and budget for future ecosystem development.
+
+### **Adjusting the protocol parameters**
+
+Protocol parameters related to the PSP token or PSP staking can be modified by governance
+
+### **Forming and funding executive committees**
+
+DAOs are well-suited for long-term thinking and planning, but some missions require a team, be it to reach a certain goal or handle continuous operations.`,
     tokens: [{
       id: '0xcafe001067cdef266afb7eb5a286dcfd277f3de5'.toLowerCase(),
       name: 'ParaSwap',
@@ -500,7 +562,11 @@ The RCC committee is dedicated to reduce operational burden on Lido DAO members.
 **Time:** 72 hours
 
 **Criteria:** Minimum approval of 5% of the total token supply must vote “Yes” and support of 50% of the tokens used to vote must vote “Yes"`,
-    tokenOverview: '',
+    tokenOverview: `#  The Lido Token
+
+The LDO governance token allows holders to vote on and contribute to decisions regarding the Lido DAO and network. 
+
+LDO voting weight is proportional to the amount of LDO a voter stakes in the voting contract, meaning that holders of larger amounts of LDO have more influence on decisions.`,
     tokens: [{
       id: '0x5a98fcbea516cf06857215779fd812ca3bef1b32'.toLowerCase(),
       name: 'Lido DAO',
@@ -533,7 +599,20 @@ PoolTogether DAO is a decentralized autonomous organization that governs the Poo
 - When it comes time to create an on-chain proposal, the proposer must:
 - Create a new PoolTogether Governance proposal that matches the specification outlined in the PTIP
 - Create a corresponding POOL Pool Snapshot vote for the proposal`,
-    tokenOverview: '',
+    tokenOverview: `#  The POOL Token
+
+POOL is a governance token that allows the community to manage the PoolTogether protocol.
+
+The primary duty of POOL holder governance is to ensure the growth of the protocol by managing the protocol parameters properly.
+
+The parameters are: 
+1. Manage the distribution of the POOL token
+2. Manage the protocol treasury 
+3. Determine parameters of prize pools (i.e., how many winners per week, prize size, etc.)
+
+If you hold POOL tokens but don’t want to actively participate in governance you can delegate your voting power to others. This action keeps the POOL tokens in your wallet but allows someone else to vote for you.
+
+If you’d like to have more voting power, you can announce yourself as a Delegate on Sybil.org to allow others to delegate to you.`,
     tokens: [{
       id: '0x0cec1a9154ff802e7934fc916ed7ca50bde6844e'.toLowerCase(),
       name: 'PoolTogether',
@@ -605,8 +684,32 @@ Protocol swap fees are a percentage of swap fees collected by pools. These go to
     snapshotId: 'stgdao.eth',
     name: 'Stargate DAO',
     logo: 'https://cdn.stamp.fyi/space/stgdao.eth?s=180',
-    overview: '',
-    tokenOverview: '',
+    overview: `# Overview 
+
+Stargate DAO is the decentralized governance body responsible for managing the Stargate protocol. Its responsibilities include protocol development, integrations, tokenomics, and the distribution of emissions to stablecoin liquidity providers.
+
+The voting power of a Stargate token holder is determined by the amount of veSTG they have. The amount of veSTG a Stargate token holder has is determined by the amount of STG they have staked and the length of the stake.
+
+## Governance process
+
+### **1. Proposal Stage**
+
+STG token holders can submit proposals that may result in a governance vote among holders of veSTG voting power.
+
+### **2. Community Calls** 
+
+Community calls are held Wednesday at 16:00 UTC to discuss proposals with positive sentiment. Proposals remain up for review after the call, and feedback from the Community Forum can be applied as edits. If the proposal has strong positive signalling, it can be posted to Snapshot.
+
+### **3. Voting**
+
+**Time:** 24 hours or 36 hours
+
+**Criteria:** Proposals with a positive poll sentiment can be submitted to Snapshot by any holder of 150,000 veSTG, or from Admin wallets on Snapshot.`,
+    tokenOverview: `# $veSTG
+
+veSTG is the unit of Stargate governance voting power. It is received by staking locked Stargate tokens and is non-transferable. The veSTG balance decays linearly as the remaining time until the staked or locked STG unlock decreases. 
+
+[Lock](https://stargateprotocol.gitbook.io/stargate/v/user-docs/stargate-features/stake) your STG tokens to receive veSTG, Stargate's governance token.`,
     tokens: [{
       id: '0xAf5191B0De278C7286d6C7CC6ab6BB8A73bA2Cd6'.toLowerCase(),
       name: 'STG',
@@ -617,8 +720,37 @@ Protocol swap fees are a percentage of swap fees collected by pools. These go to
     snapshotId: 'frax.eth',
     name: 'Frax',
     logo: 'https://cdn.stamp.fyi/space/frax.eth?s=180',
-    overview: '',
-    tokenOverview: '',
+    overview: `# Overview 
+
+The Frax community governs the protocol and can use FXS and veFXS tokens to vote on governance proposals and enact change. The core team retains control over certain aspects of governance and can operate autonomously without discussion or votes for non-controversial parameter adjustments and non-controversial use of voting power in 3rd party protocols.
+
+## Governance process
+
+### **1. Preliminary Discussion**
+
+**Time:** 3-10 days
+
+Community members can introduce a change to the Frax Protocol by creating a governance proposal in the [Governance Proposal category](https://gov.frax.finance/c/governance-proposals/5) of the Frax Forum. Forum posts should include a forum vote for feedback and signaling.
+
+### **2. Off-Chain Voting** 
+
+**Time:** minimum 5 days
+
+**Quorum:** 7.2M FXS 
+
+
+### **3. Implementation**
+
+**Criteria:** Successful proposals are implemented by the Frax Core Team.`,
+    tokenOverview: `# veFXS
+
+## Voting power 
+
+Each veFXS has 1 vote in governance proposals. Staking 1 FXS for 4 years generates 4 veFXS which decay to 1 veFXS after 4 years. 
+
+This can be extended by locking up more FXS or extending the lock end date. veFXS is non-transferable and all FXS per account must have the same lock time.
+
+Both FXS, veFXS, and UNI FXS/FRAX LP (Liquidity provider od FXS-FRAX Pair on Uniswap v2) token holders can participate in Snapshot votes using weighted voting.`,
     tokens: [{
       id: '0x3432B6A60D23Ca0dFCa7761B7ab56459D9C964D0'.toLowerCase(),
       name: 'FXS',
@@ -633,8 +765,30 @@ Protocol swap fees are a percentage of swap fees collected by pools. These go to
     snapshotId: 'rocketpool-dao.eth',
     name: 'Rocket Pool',
     logo: 'https://cdn.stamp.fyi/space/rocketpool-dao.eth?s=180',
-    overview: '',
-    tokenOverview: '',
+    overview: `# Overview 
+
+The Oracle DAO is a group of special Rocket Pool nodes that perform administrative tasks such as shuttling information from the Beacon Chain, ensuring minipools are created properly, constructing rewards Merkle trees, and monitoring proposals. 
+
+## Governance process
+
+### **1. Discussion**
+
+**Time:** 7 days
+
+### **2. Snapshot voting** 
+
+**Time:** 7+ days
+
+**Criteria:** When a quorum of 51% of the Oracle DAO members has voted the same way, the vote is concluded. If 51% agreed to the proposal, it will be able to be executed. Any member can execute the proposal once it is approved.
+
+### **3. Implementation**
+
+**Time:** 14 days`,
+    tokenOverview: `# RPL
+
+This is a token issued by the Rocket Pool contract. It serves two purposes: first, as supplemental insurance against slashing that Node Operators are required to provide before creating new minipools; second, as the governance token used to vote in the Protocol DAO.
+
+Only  RPL staked on a rocket pool node is considered for voting on governance proposals (votes on Snapshot). If you have a RP node you can delegate using a command like "rocketpool node set-voting-delegate 0xfornax.eth"`,
     tokens: [{
       id: '0xD33526068D116cE69F19A9ee46F0bd304F21A51f'.toLowerCase(),
       name: 'RPL',
@@ -645,8 +799,34 @@ Protocol swap fees are a percentage of swap fees collected by pools. These go to
     snapshotId: 'anglegovernance.eth',
     name: 'Angle Protocol',
     logo: 'https://cdn.stamp.fyi/space/anglegovernance.eth?s=180',
-    overview: '',
-    tokenOverview: '',
+    overview: `# Overview 
+
+Angle DAO is responsible for tuning and improving the protocol in order to make it sustainable and robust enough to become a building block of the DeFi space.
+
+## Governance process
+
+### **1. Discussions and debates**
+
+The DAO's efficiency is governed by the community's discussions on [Discord](https://discord.com/invite/5Af6xum9bc), in the improvement-proposals section.
+
+More formal proposals are then discussed in our governance forum at [gov.angle.money](https://gov.angle.money)
+
+### **2. Voting** 
+
+veANGLE holders can vote to approve or reject proposals regarding the Angle Protocol through Snapshot. Finalized votes are implemented by a multi-sig composed of core team and community members. The multisig addresses on all EVM compatible chains can be found [here](https://developers.angle.money/overview/smart-contracts).
+
+### **Delegating voting power**
+
+Users can delegate their veANGLE tokens at [snapshot.org/delegate](snapshot.org/delegate), selecting "Limit delegation to a specific space" and specifying anglegovernance.eth as space name. Delegations can be removed at any time.`,
+    tokenOverview: `# veANGLE
+
+veANGLE is the governance token of the Angle Protocol. 
+
+It is non-transferable and can be obtained by [locking](https://docs.angle.money/governance/veangle/lock-details) ANGLE from 1 week to up to 4 years. 
+
+It is used for voting on governance proposals and ANGLE emissions through gauge weights, as well as for boosting ANGLE rewards when providing liquidity to a gauge and earning a share of the interest generated by the protocol. 
+
+veANGLE benefits the ANGLE system as a whole by allocating voting power to long-term holders of ANGLE, incentivizing farmers to stake ANGLE, and creating a bond-like utility for ANGLE.`,
     tokens: [{
       id: '0x31429d1856aD1377A8A0079410B297e1a9e214c2'.toLowerCase(),
       name: 'ANGLE',
@@ -657,8 +837,33 @@ Protocol swap fees are a percentage of swap fees collected by pools. These go to
     snapshotId: 'fei.eth',
     name: 'Fei',
     logo: 'https://cdn.stamp.fyi/space/fei.eth?s=180',
-    overview: '',
-    tokenOverview: '',
+    overview: `# Overview 
+
+Fei Protocol is a direct incentive stablecoin which is undercollateralized and fully decentralized. Governed by the Fei DAO, it is designed to be flexible and powerful, with an access control system, autonomous governors, and parameter modifications that can be adjusted based on market conditions. The Fei DAO is forked from the Compound Governor Alpha and Timelock, and is controlled by TRIBE. It is responsible for upgrades and integrations to continually enhance the protocol in an ever-evolving DeFi space.
+
+## Governance process
+
+### **1. Discussion**
+
+**Time:** minimum 1 week
+
+**Criteria:** The potential impact of the proposal, the feasibility of the proposal, and the cost-benefit analysis of the proposal. Additionally, the proposal must be in line with the Fei Protocol's mission and values.
+
+### **2. Snapshot voting** 
+
+**Time:** 48 hours 
+
+### **3. Implementation**`,
+    tokenOverview: `# TRIBE
+
+The TRIBE token controls the DAO. TRIBE holders can vote on the following actions among others:
+
+1. Adding new bonding curves in new tokens or adjusting price functions of existing curve(s)
+2. Adjusting the allocation of PCV for new incoming funding or existing PCV
+
+TRIBE will be also held by the protocol as a DAO treasury. The community can
+distribute this as it sees fit as the protocol develops. This will come in the form of future
+governance proposals which can gift or delegate TRIBE tokens to users or contracts.`,
     tokens: [{
       id: '0xc7283b66Eb1EB5FB86327f08e1B5816b0720212B'.toLowerCase(),
       name: 'TRIBE',
@@ -669,8 +874,32 @@ Protocol swap fees are a percentage of swap fees collected by pools. These go to
     snapshotId: 'olympusdao.eth',
     name: 'OlympusDAO',
     logo: 'https://cdn.stamp.fyi/space/olympusdao.eth?s=180',
-    overview: '',
-    tokenOverview: '',
+    overview: `# Overview 
+
+OlympusDAO is a network of dedicated community members who execute on decisions & protocol mechanisms voted on through community governance. 
+
+## Governance process
+
+### **1. Discussion**
+
+**Criteria:** The final versions of proposals which have been previously discussed in the Community Discord, DAO Discord, or the general forum. 
+
+### **2. Snapshot voting** 
+
+**Time:** 48-72 hours
+
+**Criteria:** The proposal should receive at least five posts from different members to ensure sufficient engagement.
+
+### **3. Implementation**
+
+**Criteria:** The Genesis DAO prepares and executes decisions made by the community in the proposal, and they have an internal vote to ensure the change is in line with the community's decision. 
+
+**The Genesis DAO** exists for no purpose beyond executing the decisions of the community. This allows to cede decision-making power to the community without putting the protocol at risk.`,
+    tokenOverview: `# OHM
+
+The OHM token serves as both the protocol's stable currency and its governance token. 
+
+The OHM token is used for voting on proposals on Snapshot. The amount of OHM a user has represents their voting power. OHM is an ERC-20 token that can be bought on SushiSwap and is compatible with any Ethereum wallet.`,
     tokens: [{
       id: '0x04F2694C8fcee23e8Fd0dfEA1d4f5Bb8c352111F'.toLowerCase(),
       name: 'sOHM',
@@ -681,8 +910,38 @@ Protocol swap fees are a percentage of swap fees collected by pools. These go to
     snapshotId: 'dydxgov.eth',
     name: 'dYdX',
     logo: 'https://cdn.stamp.fyi/space/dydxgov.eth?s=180',
-    overview: '',
-    tokenOverview: '',
+    overview: `# Overview 
+
+The dYdX DAO is a combination of all the community programs and efforts that are and will continue to build towards the vision of complete decentralization. 
+
+## Governance process
+
+### **1. Discussion**
+
+**Criteria:** Off-chain dYdX Request for Comments (DRCs) creation is the first step in the governance improvement process. Anyone can participate in the Governance Forum, create off-chain DRCs, and discuss improvements.
+
+### **2. Snapshot voting** 
+
+**Time:** 4 days
+
+**Criteria:** 
+1. the minimum quorum - at least 1M DYDX/stkDYDX. 
+2. the minimum vote differential - at least 67% of votes must be in favor of the proposal.
+
+### **3. Implementation**
+
+**Time:** 28 days`,
+    tokenOverview: `# DYDX
+
+DYDX holders receive governance powers proportionally to their sum of owned and delegated tokens at a given block.
+
+## Voting 
+
+To participate in DYDX on-chain governance, you need DYDX tokens and ETH to cover transaction costs. If you have tokens or have been delegated tokens and there is an active proposal, you are ready to vote.
+
+## Delegation 
+
+Token holders can delegate their voting rights to the address of their choice, allowing anybody to participate in dYdX governance without owning DYDX. Votes are delegated from the current block and onward until the sender delegates or transfers their tokens; proposing power and voting power can be delegated to different addresses, but only 100% or 0% of power.`,
     tokens: [{
       id: '0x92D6C1e31e14520e676a687F0a93788B716BEff5'.toLowerCase(),
       name: 'DYDX',
@@ -693,8 +952,44 @@ Protocol swap fees are a percentage of swap fees collected by pools. These go to
     snapshotId: 'bitdao.eth',
     name: 'BitDAO',
     logo: 'https://cdn.stamp.fyi/space/bitdao.eth?s=180',
-    overview: '',
-    tokenOverview: '',
+    overview: `# Overview 
+
+BitDAO is one of the world’s largest DAOs, focused on building a decentralized tokenized economy.
+
+## Governance process
+
+### **1. Discussion**
+
+**Time:** minimum 1 week
+
+**Criteria:** Should consist of simple summary, abstract, motivation, specification, rationale, considerations 
+
+### **2. Snapshot voting** 
+
+**Time:** 7 days
+
+**Criteria:** Poll with in favor or against this proposal should be started on the forum. The creator of the proposal should have 200K BIT in order to submit a proposal. To succeed the proposal should have a majority of the votes.
+
+### **3. Implementation**
+
+**Time:** 6+ days
+
+**Criteria:** 72 hours for Reality.eth bond. Plus 72 hours timelock period should pass where multisig owners won't act if the proposal is not malicious.`,
+    tokenOverview: `# $BIT
+
+## What is governable
+
+1. Token swaps
+2. Treasury allocation into projects and AEs
+3. Updates to BitDAO core protocols
+
+## Delegation
+
+In order to vote on proposals in BitDAO you need to delegate your voting power. Note that delegation does not lock or transfer tokens. 
+
+Delegation can be given to one address at a time, including your own address. 
+
+[Here](https://delegate.bitdaotools.io/) you can delegate your votes.`,
     tokens: [{
       id: '0x1A4b46696b2bB4794Eb3D4c26f1c55F9170fa4C5'.toLowerCase(),
       name: 'BIT',
@@ -725,11 +1020,135 @@ Protocol swap fees are a percentage of swap fees collected by pools. These go to
     snapshotId: 'hop.eth',
     name: 'Hop',
     logo: 'https://cdn.stamp.fyi/space/hop.eth?s=180',
-    overview: '',
+    overview: `# Overview 
+
+Hop Protocol is a multichain bridge allowing users to send tokens across networks securely. Its mission is to unify Ethereum's layer-2 and connect Ethereum with the broader crypto ecosystem.
+
+## Governance process
+
+### **1. Request for Comment**
+
+Post a non-biased question to the Hop community on the Hop [governance forum](https://forum.hop.exchange/) or in the #governance channel on [Discord](https://discord.com/invite/PwCF88emV4). Label the post "Request for Comment - [Your Title Here]". Allow for meaningful feedback by correlating the length of the phase to the proposal's complexity.
+
+### **2. Temperature Check (Off-Chain Voting)** 
+
+**Time:** 5 days
+
+**Criteria:** The authors can incorporate feedback from the RFC phase into a second governance forum post that includes a poll on [Hop Snapshot](https://snapshot.org/#/hop.eth). The post should be titled "Temperature Check - [Your Title Here]". 
+
+**Quorum:** 300,000 HOP votes in favor to pass
+
+### **3. Formal Vote (On-Chain Voting)**
+
+**Time:** 8 days
+
+**Criteria:** The formal vote post should be titled as follows: "Formal Vote [Proposal Number] — [Your Title Here]" and link to any relevant Snapshot polls/discussion threads as well as the code audit report. Proposal numbers should be in an "HP###" format.
+
+**Quorum:** A proposal passes if the quorum is reached at least 3 million HOP 
+
+### **4. Implementation**
+
+**Time:** 2 days`,
     tokenOverview: '',
     tokens: [{
       id: '0xc5102fE9359FD9a28f877a67E36B0F050d81a3CC'.toLowerCase(),
       name: 'HOP',
+      main: true,
+    }],
+  },
+  optimism: {
+    snapshotId: 'opcollective.eth',
+    name: 'Optimism Collective',
+    logo: 'https://cdn.stamp.fyi/space/opcollective.eth?s=180',
+    overview: '',
+    tokenOverview: '',
+    tokens: [{
+      id: '0x4200000000000000000000000000000000000042'.toLowerCase(),
+      name: 'OP',
+      main: true,
+    }],
+  },
+  shapeshift: {
+    snapshotId: 'shapeshiftdao.eth',
+    name: 'ShapeShift',
+    logo: 'https://cdn.stamp.fyi/space/shapeshiftdao.eth?s=180',
+    overview: '',
+    tokenOverview: '',
+    tokens: [{
+      id: '0xc770eefad204b5180df6a14ee197d99d808ee52d'.toLowerCase(),
+      name: 'FOX',
+      main: true,
+    }],
+  },
+  gearbox: {
+    snapshotId: 'gearbox.eth',
+    name: 'Gearbox',
+    logo: 'https://cdn.stamp.fyi/space/gearbox.eth?s=180',
+    overview: '',
+    tokenOverview: '',
+    tokens: [{
+      id: '0xBa3335588D9403515223F109EdC4eB7269a9Ab5D'.toLowerCase(),
+      name: 'GEAR',
+      main: true,
+    }],
+  },
+  gitcoin: {
+    snapshotId: 'gitcoindao.eth',
+    name: 'Gitcoin',
+    logo: 'https://cdn.stamp.fyi/space/gitcoindao.eth?s=180',
+    overview: '',
+    tokenOverview: '',
+    tokens: [{
+      id: '0xde30da39c46104798bb5aa3fe8b9e0e1f348163f'.toLowerCase(),
+      name: 'GTC',
+      main: true,
+    }],
+  },
+  // pancake: {
+  //   snapshotId: 'cakevote.eth',
+  //   name: 'PancakeSwap',
+  //   logo: 'https://cdn.stamp.fyi/space/cakevote.eth?s=180',
+  //   overview: '',
+  //   tokenOverview: '',
+  //   tokens: [{
+  //     id: '0x0e09fabb73bd3ade0a17ecc321fd13a19e81ce82'.toLowerCase(),
+  //     name: 'CAKE',
+  //     main: true,
+  //   }],
+  // },
+  aavegotchi: {
+    snapshotId: 'aavegotchi.eth',
+    name: 'Aavegotchi',
+    logo: 'https://cdn.stamp.fyi/space/aavegotchi.eth?s=180',
+    overview: '',
+    tokenOverview: '',
+    tokens: [{
+      id: '0x3f382dbd960e3a9bbceae22651e88158d2791550'.toLowerCase(),
+      name: 'GHST',
+      main: true,
+    }],
+  },
+  gnosis: {
+    snapshotId: 'gnosis.eth',
+    name: 'GnosisDAO',
+    logo: 'https://cdn.stamp.fyi/space/gnosis.eth?s=180',
+    overview: '',
+    tokenOverview: '',
+    tokens: [{
+      id: '0x6810e776880c02933d47db1b9fc05908e5386b96'.toLowerCase(),
+      name: 'GNO',
+      main: true,
+    }],
+  },
+  cow: {
+    snapshotId: 'cow.eth',
+    name: 'CoW DAO',
+    logo: 'https://cdn.stamp.fyi/space/cow.eth?s=180',
+    overview: '',
+    tokenOverview: '',
+    tokens: [{
+      id: '0xdef1ca1fb7fbcdc777520aa7f396b4e015f497ab'.toLowerCase(),
+      name: 'COW',
       main: true,
     }],
   },
